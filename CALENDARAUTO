@@ -1,0 +1,23 @@
+CALENDARAUTO is a DAX function used in Power BI, Power Pivot, and Analysis Services to create a date table automatically. 
+This function generates a single-column table of dates based on the minimum and maximum dates found in the model's date columns.
+It's useful for quickly creating a comprehensive date table that spans the entire range of dates present in your dataset.
+
+
+
+Date Table (CALENDARAUTO) = 
+VAR MinYear = YEAR(MIN('Calendar'[Transaction_Date]))
+VAR MaxYear = YEAR(MAX('Calendar'[Transaction_Date]))
+
+RETURN
+ADDCOLUMNS(
+    FILTER(
+        CALENDARAUTO(),
+        YEAR([Date]) >= MinYear &&
+        YEAR([Date]) <= MaxYear
+    ),
+    "Year", YEAR([Date]),
+    "Quarter Number", QUARTER([Date]),
+    "Month Number", MONTH([Date]),
+    "Month Short", FORMAT([Date], "MMM"),
+    "Week Number", WEEKNUM([Date])
+)
