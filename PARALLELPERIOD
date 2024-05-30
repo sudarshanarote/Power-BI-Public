@@ -1,0 +1,9 @@
+Last Quarters Sales (PARALLELPERIOD) = 
+CALCULATE(
+    [Customer Sales],
+    PARALLELPERIOD(
+        'Calendar'[Transaction_Date],
+        -1,
+        QUARTER
+    )
+)
