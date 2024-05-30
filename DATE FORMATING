@@ -1,0 +1,52 @@
+
+## Add New Column (Weekday Number)
+
+Weekday Number = 
+WEEKDAY(
+    'Calendar'[Transaction_Date],
+    2
+)
+
+###############################################################################################
+
+## Add New Column (Weekday Name)
+
+Weekday Name = 
+FORMAT(
+    'Calendar'[Transaction_Date],
+    "dddd"
+)
+
+#################################################################################################
+
+## Add New Column (Weekends)
+
+Weekends = 
+IF(
+    WEEKDAY(
+        'Calendar'[Transaction_Date],
+        2) IN {6, 7},
+    "Y",
+    "N"
+)
+
+###################################################################################################
+
+## Create a New Measure (% Of Total Sales)
+
+% Of Total Sales = 
+VAR AllSales=
+CALCULATE(
+    [Customer Sales],
+    ALL(
+        'Sales by Store'
+    )
+)
+
+VAR Ratio= DIVIDE(
+    [Customer Sales],
+    AllSales
+)
+
+RETURN
+Ratio
