@@ -1,0 +1,29 @@
+The CALENDAR function in DAX is used to create a table with a single column of date values.
+You specify a start date and an end date, and CALENDAR generates a continuous range of dates
+between these two dates. This function is useful for creating a date table (also known as a calendar table)
+for time intelligence calculations in Power BI, Power Pivot, and Analysis Services.
+
+Syntax:-
+CALENDAR(start_date, end_date)
+
+
+
+Example 1:-
+CALENDAR Demo 1 = 
+CALENDAR(
+
+    DATE(2020,01,01),
+    DATE(2020,12,31)
+
+)
+
+
+Examples 2:-
+CALENDAR Demo 2 = 
+CALENDAR(
+    DATE(YEAR(MIN('Calendar'[Transaction_Date])),1,1),
+    DATE(YEAR(MAX('Calendar'[Transaction_Date])),12,31)
+)
+
+
+
