@@ -1,0 +1,36 @@
+The PREVIOUSQUARTER function in DAX (Data Analysis Expressions) is used to return a table that contains a set of dates
+from the previous quarter relative to the given date context. This function is particularly useful in time intelligence calculations,
+such as comparing metrics from the current quarter to the previous quarter.
+
+Syntax
+
+PREVIOUSQUARTER(<dates>)
+
+Example Usage
+Consider you have a date table named Calendar and a measure that calculates sales.
+You can use PREVIOUSQUARTER to create a measure that calculates the sales from the previous quarter.
+
+Example 1: Creating a Measure for Sales in the Previous Quarter
+DAX
+Copy code
+Previous Quarter Sales = 
+CALCULATE(
+    SUM('Sales'[Amount]),
+    PREVIOUSQUARTER('Calendar'[Date])
+)
+
+In this example:
+
+SUM('Sales'[Amount]) calculates the total sales amount.
+CALCULATE modifies the context to use dates from the previous quarter, as specified by PREVIOUSQUARTER('Calendar'[Date]).
+
+########################################################################################################################################
+Example:-
+
+Last Quarters Sales (PREVIOUSQUARTER) = 
+CALCULATE(
+    [Customer Sales],
+    PREVIOUSQUARTER(
+        'Calendar'[Transaction_Date]
+    )
+)
