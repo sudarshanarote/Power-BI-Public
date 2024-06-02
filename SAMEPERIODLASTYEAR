@@ -1,0 +1,38 @@
+SAMEPERIODLASTYEAR is a DAX (Data Analysis Expressions) function in Power BI that returns a table with the 
+same period in the previous year. It is commonly used for year-over-year comparisons in time intelligence calculations.
+
+Syntax:-
+SAMEPERIODLASTYEAR(<dates>)
+
+<dates>: A column containing dates.
+
+Example Usage
+Suppose you have a table called Sales with a date column named OrderDate and a measure called Total Sales. 
+You want to create a measure that calculates the total sales for the same period in the previous year.
+
+Total Sales Measure:-
+Total Sales = SUM(Sales[SalesAmount])
+
+#################################################################################################################################################################################
+Total Sales Same Period Last Year Measure:-
+
+Total Sales Same Period Last Year = 
+    CALCULATE(
+        [Total Sales],
+        SAMEPERIODLASTYEAR(Sales[OrderDate])
+    )
+
+In this example:
+
+Total Sales calculates the sum of the sales amount.
+Total Sales Same Period Last Year uses the SAMEPERIODLASTYEAR function within the CALCULATE function to get the sales amount for the same period in the previous year.
+
+#####################################################################################################################################################################################
+Example:-
+
+Last Year Sales (SAMEPERIODLASTYEAR) = 
+CALCULATE(
+    [Customer Sales],
+    SAMEPERIODLASTYEAR(
+        'Calendar'[Transaction_Date]
+    ))
