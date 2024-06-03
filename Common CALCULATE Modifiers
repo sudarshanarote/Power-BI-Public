@@ -65,3 +65,38 @@ Sales This Year (Keep Filters) = CALCULATE(
     SUM(Sales[SalesAmount]),
     KEEPFILTERS('Date'[Year] = YEAR(TODAY()))
 )
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+ALLSELECTED:
+        The ALLSELECTED function preserves slicer selections while removing other filters.
+
+It retains the context set by slicers but ignores other filters.
+
+Example: To calculate sales for the selected year, regardless of other filters:
+
+Sales This Year (All Selected) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    ALLSELECTED('Date')
+)
+----------------------------------------------------------------------------------------------------------------------------------------
+ALLNOBLANKROW:
+        The ALLNOBLANKROW function removes the blank row from a table.
+
+Useful when you want to exclude the default blank row created by Power BI.
+
+Example: To calculate the average price excluding blank rows:
+
+Average Price (No Blank Rows) = AVERAGEX(ALLNOBLANKROW(Products), Products[UnitPrice])
+----------------------------------------------------------------------------------------------------------------------------------------
+REMOVEFILTERS:
+
+The REMOVEFILTERS function removes all filters from the specified table or columns.
+
+Useful when you want to start with a clean slate.
+
+Example: To calculate total sales without any filters:
+
+Total Sales (No Filters) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    REMOVEFILTERS()
+)
