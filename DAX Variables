@@ -35,5 +35,4 @@ SalesPriorYear
 Reduce Complexity:
 In earlier versions of DAX, variables were not supported, and complex expressions had to use functions like EARLIER or EARLIEST.
 Variables allow you to break down logic into smaller steps, making your formulas more manageable.
-Remember, DAX variables are a valuable tool for creating efficient, readable, and maintainable formulas. If you have any specific use cases or need further clarification, feel free to ask! 😊
-
+Remember, DAX variables are a valuable tool for creating efficient, readable, and maintainable formulas. 
