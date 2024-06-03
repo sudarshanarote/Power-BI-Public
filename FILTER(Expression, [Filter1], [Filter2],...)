@@ -1,0 +1,26 @@
+FILTER(Expression, [Filter1], [Filter2],...) :-
+          Filter is both a table function and an Iterator.
+          Often used to reduce the number of rows to scan.
+
+
+The FILTER function in DAX allows you to create a subset of a table by evaluating a Boolean expression for each row
+and returning only the rows that satisfy the condition. It is a powerful tool for data filtering.
+
+Here’s how it works:
+
+Syntax:
+FILTER(<table>, <filter_expression>)
+
+Parameters:
+<table>: The table to be filtered (can also be an expression that results in a table).
+<filter_expression>: A Boolean expression to be evaluated for each row.
+
+Example: Suppose you have a sales table with columns for product names, sales amounts, and regions.
+You want to filter out sales in the United States:
+
+Non-USA Sales = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    FILTER('Sales', RELATED('SalesTerritory'[SalesTerritoryCountry]) <> "United States")
+)
+
+In this example, the expression filters out all rows that belong to the United States sales territory.
