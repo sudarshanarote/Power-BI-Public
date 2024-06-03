@@ -1,5 +1,9 @@
 DAX (Data Analysis Expressions) variables are a powerful feature that can enhance your DAX formulas in several ways. Let’s explore how they work and their benefits:
 
+Variables (VAR) are DAX expression which can be reused multiple times within a query, and are commonly used for two key purposes:-
+1) Readability:- Variable make complex code more human readable.
+2) Performance:- Variables are only evaluated once no matter how often they are used within a query.
+
 Improve Performance:
 When you have complex expressions that involve repeating calculations, using variables can significantly improve performance.
 Instead of evaluating the same expression multiple times, you can store the result in a variable and reuse it within your formula.
