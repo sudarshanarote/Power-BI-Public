@@ -1,4 +1,6 @@
-The CALCULATE function in DAX (Data Analysis Expressions) is a powerful tool that allows you to evaluate an expression in a modified filter context. Let’s break down what this means:
+CALCULATE:-
+        Evaluates a given Expresion or formula under a set of defined filters.
+
 
 Expression:
 The expression you provide to CALCULATE is essentially a measure. It can include functions like SUM, AVERAGE, COUNT, or any other DAX function that returns a value.
