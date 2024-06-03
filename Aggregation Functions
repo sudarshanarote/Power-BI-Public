@@ -1,0 +1,46 @@
+Aggregation Functions:-
+              Functions that can be used to dynamically aggregate values within a column.
+
+
+SUM:
+Calculates the sum of a column or expression.
+Example: If you have a sales table with a column named SalesAmount, you can find the total sales using:
+Total Sales = SUM(Sales[SalesAmount])
+
+AVERAGE:
+Computes the average of a column or expression.
+Example: To find the average order quantity, you can use:
+Average Quantity = AVERAGE(Sales[OrderQuantity])
+
+MIN and MAX:
+Find the minimum and maximum values in a column.
+Examples:
+Minimum sales amount:
+Min Sales Amount = MIN(Sales[SalesAmount])
+
+Maximum order date:
+Max Order Date = MAX(Sales[OrderDate])
+
+COUNT:
+Counts the number of rows in a table or column.
+Example: To count the number of products in your inventory, use:
+Product Count = COUNT(Products[ProductID])
+
+COUNTA:
+Similar to COUNT, but includes non-blank values only.
+Useful for counting non-empty cells.
+Example: Count non-blank customer names:
+Non-Blank Customers = COUNTA(Customer[CustomerName])
+
+DISTINCTCOUNT:
+Counts the number of distinct (unique) values in a column.
+Example: Count unique product categories:
+Unique Categories = DISTINCTCOUNT(Products[Category])
+
+PRODUCT:
+Multiplies all values in a column.
+Example: Calculate the total revenue (product of quantity and price):
+Total Revenue = PRODUCT(Sales[Quantity], Sales[UnitPrice])
+
+
+Remember, aggregation functions are essential for summarizing data and creating meaningful insights.
