@@ -1,0 +1,15 @@
+VALUES():-
+      Returns a single column table of unique values when a column name is given. If a table name is supplied, VALUES, returns the entire table (including duplicates) plus a blank row.
+
+ The VALUES function in DAX is used to retrieve distinct values from a column. It returns a table containing unique values from the specified column.
+
+Here’s how you can use it:
+
+Distinct Values from a Column:
+      To get a list of unique values from a specific column, use the VALUES function.
+
+Example: Suppose you have a Product table with a column named Category. You want to find all unique product categories:
+Unique Categories = VALUES(Product[Category])
+
+This will return a table with distinct category values.
+Remember, the VALUES function is useful for creating clean, unique lists of values based on your data.
