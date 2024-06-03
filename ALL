@@ -1,0 +1,19 @@
+ALL:-
+    Returns all the rows in the table, or all the values in a column, ignoring any filters.
+
+The ALL function in DAX is a powerful tool for removing filters from specified columns or tables.
+It allows you to work with the entire table without any filters applied. Here’s how it works:
+
+ALL Function:
+  The ALL function removes filters from specified columns or tables.
+  It returns the entire table without any filters applied.
+
+Syntax: ALL(<column1>, <column2>, ...)
+
+Example: Suppose you have a sales table, and you want to calculate the total sales ignoring any filters on the Date table:
+Total Sales (All Dates) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    ALL('Date')
+)
+
+In this example, the expression filters out all rows that belong to the United States sales territory.
