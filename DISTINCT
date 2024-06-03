@@ -1,0 +1,26 @@
+DISTINCT:-
+    Returns a single column table of unique values when a column name is given.
+If a table is supplied, DISTINCT returns all unique combinations of values.
+
+
+The DISTINCT function in DAX is used to retrieve unique values from a column or table.
+It eliminates duplicate values and returns only distinct values.
+
+Here’s how you can use it:
+
+Distinct Values from a Column:
+    To get a list of unique values from a specific column, use the DISTINCT function.
+
+Example: Suppose you have a Product table with a column named Category. You want to find all unique product categories:
+Unique Categories = DISTINCT(Product[Category])
+
+This will return a table with distinct category values.
+--------------------------------------------------------------------------------------------------------------------------------------
+Distinct Rows from a Table:
+    If you want to retrieve distinct rows from an entire table, you can use the DISTINCT function as well.
+
+Example: To get all unique rows from the Sales table:
+Unique Sales Rows = DISTINCT(Sales)
+
+This will return a table with distinct combinations of all columns in the Sales table.
+Remember, the DISTINCT function is handy for creating clean, unique lists or tables based on your data.
