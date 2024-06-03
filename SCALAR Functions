@@ -1,0 +1,61 @@
+SCALAR Functions:-
+            Scalar functions returns a single value, rather than aa column or table. common examples include aggregation, conversion, rounding and logical function.
+        1) Aggregation Functions
+        2) Information Functions
+        3) Logical Functions
+        4) Rounding Functions
+        5) Conversion Functions
+
+
+In DAX (Data Analysis Expressions), we have two main types of functions: scalar functions and tabular functions. Let’s dive into each of them:
+
+Scalar Functions:
+            Scalar functions return a single value. This value can be of any data type, such as numeric, date, text, or boolean.
+
+Aggregation Functions:
+            These functions perform calculations on a set of values and return a single result.
+Examples:
+    SUM: Calculates the sum of a column or expression.
+    AVERAGE: Computes the average of a column or expression.
+    MIN and MAX: Find the minimum and maximum values.
+    COUNT: Counts the number of rows in a table or column.
+
+
+Information Functions:
+            These functions provide information about data or expressions.
+Examples:
+    ISBLANK: Checks if a value is blank (empty).
+    ISNUMBER: Determines if a value is numeric.
+    ISINSCOPE: Indicates whether a measure is being evaluated within a specific filter context.
+
+
+Logical Functions:
+            Logical functions return a boolean (TRUE or FALSE) result based on conditions.
+Examples:
+    IF: Returns one value if a condition is true, and another value if false.
+    AND and OR: Combine multiple conditions.
+    NOT: Negates a boolean value.
+
+
+Rounding Functions:
+          These functions allow you to round numbers to a specified precision.
+Examples:
+    ROUND: Rounds a number to the nearest integer.
+    ROUNDUP: Rounds up to the nearest integer.
+    ROUNDDOWN: Rounds down to the nearest integer.
+
+
+Conversion Functions:
+            Conversion functions change the data type of a value.
+Examples:
+    VALUE: Converts a text representation of a number to an actual number.
+    TEXT: Converts a value to text.
+    DATEVALUE: Converts a date text to a date value.
+
+Misuse of Functions:
+          Be cautious not to use a function in a place where it doesn’t make sense. For example:
+          Using a scalar function to build a calculated table.
+          Using a tabular function to return the main result of a DAX measure.
+
+
+Remember, understanding the distinction between scalar and tabular functions is essential for effective DAX modeling.
