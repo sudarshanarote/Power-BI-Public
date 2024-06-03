@@ -1,0 +1,60 @@
+Filter Data Functions:-
+    Functions used to returned tables or filter results of Measures.
+
+
+ALL:
+  The ALL function removes filters from specified columns or tables.
+  It returns the entire table without any filters applied.
+
+Example: To calculate the total sales ignoring any filters on the Date table:
+
+Total Sales (All Dates) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    ALL('Date')
+)
+---------------------------------------------------------------------------------------------------------------------------------------
+FILTER:
+    The FILTER function allows you to create a subset of a table based on specific conditions.
+    It evaluates a Boolean expression for each row in the table and returns only the rows that satisfy the condition.
+
+Example: To filter out sales in the United States:
+
+Non-USA Sales = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    FILTER('Sales', RELATED('SalesTerritory'[SalesTerritoryCountry]) <> "United States")
+)
+--------------------------------------------------------------------------------------------------------------------------------------
+DISTINCT:
+    The DISTINCT function retrieves unique values from a column.
+    It eliminates duplicate values and returns only distinct values.
+
+Example: To get all unique product categories:
+Unique Categories = DISTINCT(Product[Category])
+------------------------------------------------------------------------------------------------------------------------------------------
+VALUES:
+    The VALUES function also retrieves distinct values from a column.
+    It returns a table containing unique values from the specified column.
+
+Example: To get all unique product categories (alternative approach):
+Unique Categories (Alternative) = VALUES(Product[Category])
+------------------------------------------------------------------------------------------------------------------------------------------
+ALLEXCEPT:
+    The ALLEXCEPT function removes filters from all columns except the specified ones.
+
+Example: To calculate the total sales for each product, ignoring filters on other columns:
+
+Total Sales (All Except Product) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    ALLEXCEPT(Products, Products[ProductID])
+)
+---------------------------------------------------------------------------------------------------------------------------------------
+ALLSELECTED:
+    The ALLSELECTED function preserves slicer selections while removing other filters.
+
+Example: To calculate sales for the selected year, regardless of other filters:
+
+
+Sales This Year (All Selected) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    ALLSELECTED('Date')
+)
