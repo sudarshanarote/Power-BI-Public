@@ -1,0 +1,37 @@
+Table & Filter Functions:-
+        Table and filter functions return columns or Tables rather than scalar values,
+and can be used to either generate new data or serve as table inputs within DAX measures.
+
+FILTER Function:
+      The FILTER function allows you to create a subset of a table based on specific conditions.
+It evaluates a Boolean expression for each row in the table and returns only the rows that satisfy the condition.
+
+Syntax: FILTER(<table>, <filter_expression>)
+
+Parameters:
+<table>: The table to be filtered (can also be an expression that results in a table).
+<filter_expression>: A Boolean expression to be evaluated for each row.
+
+Example: Suppose we have a sales table, and we want to filter out sales in the United States:
+Non-USA Sales = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    FILTER('Sales', RELATED('SalesTerritory'[SalesTerritoryCountry]) <> "United States")
+)
+
+In this example, the expression filters out all rows that belong to the United States sales territory.
+----------------------------------------------------------------------------------------------------------------------------------
+
+CALCULATETABLE Function:
+      The CALCULATETABLE function evaluates a table expression in a modified filter context.
+It allows you to create virtual tables in memory based on specific conditions.
+Syntax: CALCULATETABLE(<expression>, <filter1>, <filter2>, ...)
+Parameters:
+<expression>: The table expression to be evaluated.
+<filter1>, <filter2>, …: Boolean expressions or table expressions defining filters.
+Example: To calculate total sales for non-USA regions:
+Non-USA Sales Table = CALCULATETABLE(
+    'Sales',
+    FILTER('SalesTerritory', 'SalesTerritory'[SalesTerritoryCountry] <> "United States")
+)
+
+This creates a new virtual table containing only non-USA sales data.
