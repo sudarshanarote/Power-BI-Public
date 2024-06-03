@@ -1,0 +1,38 @@
+Create Data Functions:-
+              Functions to generate columns & taables from scratch.
+
+
+ROW:
+  The ROW function creates a single-row table with specified column values.
+
+Syntax: ROW(<column1>, <value1>, <column2>, <value2>, ...)
+
+Example: To create a single-row table with custom values:
+MyRowTable = ROW("Name", "John", "Age", 30)
+
+This creates a table with columns “Name” and “Age” containing the specified values.
+----------------------------------------------------------------------------------------------------------------------------------------
+DATATABLE:
+        The DATATABLE function creates a table with specified columns and rows.
+
+Syntax: DATATABLE(<column1>, <datatype1>, <column2>, <datatype2>, ...), { {<value1>, <value2>, ...}, {<value1>, <value2>, ...}, ... }
+
+Example: To create a simple table with two columns (“Product” and “Price”):
+MyDataTable = DATATABLE("Product", STRING, "Price", CURRENCY), { {"Apple", 1.99}, {"Banana", 0.99}, {"Orange", 2.49} }
+
+This creates a table with three rows and two columns.
+-----------------------------------------------------------------------------------------------------------------------------------------
+GENERATESERIES:
+        The GENERATESERIES function creates a single-column table with values incrementing by a specified step.
+Syntax: GENERATESERIES(<start_value>, <end_value>, <step>)
+Example: To create a table with values from 1 to 10 (step 2):
+MySeriesTable = GENERATESERIES(1, 10, 2)
+
+This generates a table with values 1, 3, 5, 7, and 9.
+Table Constructor ({} or ROW):
+The table constructor creates a table with specified values.
+Syntax: { {<value1>, <value2>, ...}, {<value1>, <value2>, ...}, ... }
+Example: To create a table with two rows and two columns:
+MyTable = { {"A", 1}, {"B", 2} }
+
+This creates a table with columns “Column1” and “Column2”.
