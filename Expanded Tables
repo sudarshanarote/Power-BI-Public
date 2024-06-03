@@ -1,0 +1,36 @@
+Expanded Tables:-
+            An xpanded Table consist of base table (which is visible to the users),along
+with the columns from any related table connected via a 1-to-1 or many-to-1 relationship.
+
+Expanded Tables in the models always go from the Many side to one side of the relationship.
+      1) Expanded tables contain all the columns of the original table plus all the columns on the onne side.
+      2) Understanding expanded tables is useful because it provides a clear understanding of how filer context propages in DAX queries.
+      3) Once a filter is applied to a column, all expanded tables containing that column are also filtered.
+
+
+In DAX, an expanded table refers to a table that includes additional columns or rows based on 
+relationships or calculations. These expanded tables are created dynamically during query execution
+or when evaluating expressions. Here are some scenarios where expanded tables come into play:
+
+Filter Context Expansion:
+When you create a measure or calculated column, DAX evaluates it within a specific filter context.
+The filter context includes filters applied by slicers, row-level security, and other factors.
+DAX automatically expands the filter context to include related tables based on active relationships.
+For example, if you have a sales table related to a date table, DAX expands the filter context to include date-related information.
+
+Row Context Expansion:
+When iterating over rows (e.g., using iterators like SUMX or FILTER), DAX creates an expanded table.
+Each row in the original table corresponds to multiple rows in the expanded table.
+The expanded table includes additional columns from related tables.
+For instance, if you iterate over products and calculate sales for each product, DAX expands the context to include related sales data.
+
+Expanded Columns:
+DAX expressions can reference columns from related tables.
+These columns are considered part of the expanded table.
+For example, if you create a calculated column that computes the total sales for each customer, it may reference columns from both the customer and sales tables.
+
+Expanded Rows:
+When using iterators like SUMX, DAX iterates over rows and creates an expanded table.
+Each row in the original table results in multiple rows in the expanded table.
+The expanded rows include all related rows based on active relationships.
+This expansion allows you to perform calculations across related data.
