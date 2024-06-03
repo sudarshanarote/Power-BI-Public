@@ -1,0 +1,67 @@
+Common CALCULATE Modifiers:-
+        Modifiers are used to alter the way CALCULATE creates filter context, and are added as filter arguments within a CALCULATE function.
+
+Modifiers are typically used to change filter context, access  inactive table 
+relationships or changethe way filters propagates (i.e one-way to bidirectional)
+
+
+These modifiers allow you to customize the behavior of your calculations and create more sophisticated measures:
+
+FILTER:
+  The FILTER modifier allows you to apply additional filters to your expression within the CALCULATE function.
+
+Syntax: CALCULATE(<expression>, FILTER(<table>, <filter_expression>))
+
+Example: Suppose you want to calculate the total sales for products in the “Electronics” category:
+
+Total Electronics Sales = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    FILTER(Products, Products[Category] = "Electronics")
+)
+--------------------------------------------------------------------------------------------------------------------------------
+ALL:
+    The ALL modifier removes filters from specified columns or tables.
+
+Syntax: CALCULATE(<expression>, ALL(<column1>, <column2>, ...))
+
+Example: To calculate the total sales ignoring any filters on the Date table:
+Total Sales (All Dates) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    ALL('Date')
+)
+-----------------------------------------------------------------------------------------------------------------------------------
+ALLEXCEPT:
+        The ALLEXCEPT modifier removes filters from all columns except the specified ones.
+
+Syntax: CALCULATE(<expression>, ALLEXCEPT(<table>, <column1>, <column2>, ...))
+
+Example: To calculate the total sales for each product, ignoring filters on other columns:
+
+Total Sales (All Except Product) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    ALLEXCEPT(Products, Products[ProductID])
+)
+--------------------------------------------------------------------------------------------------------------------------------------
+USERELATIONSHIP:
+      The USERELATIONSHIP modifier allows you to override the active relationship between tables.
+
+Syntax: CALCULATE(<expression>, USERELATIONSHIP(<column1>, <column2>))
+
+Example: When calculating sales for a specific customer, use a different relationship:
+
+Total Sales (Alternate Relationship) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    USERELATIONSHIP(Sales[CustomerID], Customers[AlternateCustomerID])
+)
+---------------------------------------------------------------------------------------------------------------------------------------
+KEEPFILTERS:
+        The KEEPFILTERS modifier preserves existing filters while applying new ones.
+
+Syntax: CALCULATE(<expression>, KEEPFILTERS(<table>, <filter_expression>))
+
+Example: To calculate sales for the current year without affecting other filters:
+
+Sales This Year (Keep Filters) = CALCULATE(
+    SUM(Sales[SalesAmount]),
+    KEEPFILTERS('Date'[Year] = YEAR(TODAY()))
+)
