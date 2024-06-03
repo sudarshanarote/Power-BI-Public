@@ -1,0 +1,43 @@
+Logical Functions:-
+            Functions for returing information about values in a conditional expression.
+
+
+IF:
+The IF function evaluates a condition and returns one value if the condition is true, and another value if false.
+Syntax: IF(<condition>, <value_if_true>, <value_if_false>)
+
+      <condition>: A logical expression.
+      <value_if_true>: The result when the condition is true.
+      <value_if_false>: The result when the condition is false.
+
+Example: To categorize sales as “High” or “Low” based on a threshold:
+Sales Category = IF(Sales[SalesAmount] > 1000, "High", "Low")
+
+AND and OR:
+    The AND function checks if all conditions are true.
+    The OR function checks if at least one condition is true.
+Example:
+Is High Value Sale? = AND(Sales[SalesAmount] > 1000, Sales[Region] = "West")
+
+NOT:
+    The NOT function negates a boolean value.
+Example:
+Is Not Cancelled? = NOT(Sales[IsCancelled])
+
+TRUE/FALSE:
+      These are constants representing boolean values.
+Example:
+Is Active Customer? = Sales[IsActive] = TRUE()
+
+SWITCH:
+      The SWITCH function is like a multi-condition IF statement.
+      It evaluates a series of conditions and returns a value based on the first true condition.
+Example:
+Product Category = SWITCH(Products[CategoryID], 1, "Electronics", 2, "Clothing", "Other")
+
+COALESCE:
+      The COALESCE function returns the first non-blank value from a list of expressions.
+Example:
+Preferred Contact = COALESCE(Customer[Email], Customer[Phone], Customer[Address])
+
+Remember, logical functions help you make decisions and create dynamic calculations in DAX.
