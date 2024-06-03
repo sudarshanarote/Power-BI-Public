@@ -1,0 +1,35 @@
+  Information Functions:-
+                Functions that can be used to analyze the data type or output of an expression.
+
+
+ISBLANK:
+      The ISBLANK function checks if a value is blank (empty) or null.
+Example: To determine if the SalesAmount column has any blank values, use:
+Is Sales Amount Blank? = ISBLANK(Sales[SalesAmount])
+
+ISERROR:
+      The ISERROR function checks if an expression results in an error.
+Example: To identify if a division calculation has an error, use:
+Has Division Error? = ISERROR(DIVIDE(1, 0))
+
+ISLOGICAL:
+      The ISLOGICAL function checks if a value is a boolean (TRUE or FALSE).
+Example: To verify if a column contains boolean values, use:
+Is Boolean Column? = ISLOGICAL(Table[Column])
+
+ISNONTEXT:
+      The ISNONTEXT function checks if a value is not a text (string) type.
+Example: To find non-text values in the ProductCode column, use:
+Non-Text Products = CALCULATE(COUNTROWS(Products), ISNONTEXT(Products[ProductCode]))
+
+ISNUMBER:
+      The ISNUMBER function determines if a value is numeric.
+Example: To check if the Quantity column contains only numeric values, use:
+Is Numeric Quantity? = ISNUMBER(Sales[Quantity])
+
+ISTEXT:
+      The ISTEXT function checks if a value is a text (string) type.
+Example: To validate if the CustomerName column contains only text, use:
+Is Text Customer Name? = ISTEXT(Customer[CustomerName])
+
+Remember, information functions help you validate and categorize data based on specific criteria.
