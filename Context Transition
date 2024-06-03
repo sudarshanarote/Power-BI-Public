@@ -1,0 +1,41 @@
+Context Transition:-
+            Context Transition is the process of turning row into filter context.
+
+What is Context Transition?
+        Context transition occurs when DAX evaluates a measure within a different context than the one it was originally defined in.
+This transition happens due to the interaction between row context and filter context. Let’s break it down:
+
+Row Context:
+    Row context refers to the current row being processed in a table or an iterator.
+    When you iterate over rows (e.g., using SUMX, FILTER, or other iterators), DAX evaluates expressions within this row context.
+    Each row has its own context, including column values from that row.
+
+Filter Context:
+    Filter context is determined by slicers, filters, and other selections applied to a report or visual.
+    It defines which rows are visible or relevant for calculations.
+    Filter context affects the results of measures.
+
+Context Transition:
+    When a measure references columns from related tables, DAX transitions from row context to filter context.
+    This transition allows the measure to consider all related rows based on active relationships.
+    The expanded table includes additional columns from related tables.
+
+Example:
+        Suppose we have a sales table (Sales) related to a date table (Calendar).
+We want to calculate the total salesamount for each year. We create a measure called Total Sales:
+
+Total Sales = SUM(Sales[SalesAmount])
+
+Row Context:
+      When iterating over rows in the Sales table, the measure evaluates within the context of each individual sale.
+For each sale, it calculates the sum of SalesAmount.
+
+Filter Context Expansion:
+      If we create a visual that shows sales by year (using the Calendar table), DAX expands the filter context.
+      The measure now considers all related sales for each year, not just the current row.
+      It sums up the sales amount for the entire year.
+
+Benefits:
+    Context transition allows us to create powerful calculations across related data.
+    Measures can seamlessly incorporate information from related tables.
+    It ensures accurate results even when dealing with complex scenarios.
