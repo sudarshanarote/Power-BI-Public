@@ -1,0 +1,237 @@
+In Power BI, Data Analysis Expressions (DAX) plays a crucial role in performing complex calculations and manipulating data. Here are some common DAX functions you’ll encounter:
+
+SUM(): Adds all the numbers in a column.
+CALCULATE(): Changes the context in which a data expression is evaluated.
+FILTER(): Returns a table that has been filtered down.
+AVERAGE(): Calculates the average of a column.
+MIN() and MAX(): Find the minimum and maximum values in a column.
+RANKX(): Computes the rank of a value within a column.
+CONCATENATEX(): Concatenates text values from a column.
+SWITCH(): Evaluates multiple expressions and returns a result based on conditions.
+ALL(): Removes filters from a table or column.
+RELATED(): Follows relationships between tables.
+
+###########################################################################################################################################################################################
+###########################################################################################################################################################################################
+
+Iterator Functions:-
+
+Iterator functions in DAX (Data Analysis Expressions) allow you to iterate through a table, whether it’s a virtual or physical table, 
+and perform logic at each row. These functions are incredibly useful for custom summarizations, ranking, and concatenation. Let’s explore some common iterator functions:
+
+SUMX(): Calculates the sum of an expression for each row in a table. For example:
+Total Sales = SUMX(Sales, Sales[Amount])
+
+AVERAGEX(): Computes the average of an expression across all rows in a table. For instance:
+Average Price = AVERAGEX(Products, Products[Price])
+
+MINX() and MAXX(): Find the minimum and maximum values of an expression over a table. For example:
+Lowest Price = MINX(Products, Products[Price])
+Highest Price = MAXX(Products, Products[Price])
+
+COUNTX(): Counts the number of rows where an expression evaluates to a non-blank value. For instance:
+Number of Customers = COUNTX(Customers, Customers[CustomerID])
+
+CONCATENATEX(): Concatenates text values from a column into a single string. Example:
+All Product Names = CONCATENATEX(Products, Products[ProductName], ", ")
+
+Remember, these iterator functions allow you to perform calculations at a row level,
+making them powerful tools for creating dynamic measures and calculated columns in your Power BI reports. 🚀📊
+
+########################################################################################################################################################################################
+########################################################################################################################################################################################
+Logical Functions:-
+
+logical functions in DAX (Data Analysis Expressions). These functions allow you to evaluate conditions and return results based on
+logical values (TRUE or FALSE).Here are the ones you mentioned:
+
+IF(): The IF function checks a condition and returns one value when it’s true, and another value when it’s false. For example:
+Total Sales = IF(Sales[Amount] > 1000, "High", "Low")
+
+IFERROR(): The IFERROR function returns a specified value if an expression results in an error. For instance:
+Net Profit = IFERROR(Sales[Revenue] - Sales[Cost], 0)
+
+NOT(): The NOT function changes FALSE to TRUE and TRUE to FALSE. It negates the logical value. Example:
+IsNotCancelled = NOT(Orders[IsCancelled])
+
+AND(): The AND function checks whether both arguments are TRUE and returns TRUE if both are true. It’s useful for combining multiple conditions. Example:
+Is Profitable = AND(Sales[Revenue] > 0, Sales[Cost] < Sales[Revenue])
+
+OR(): The OR function checks whether at least one of the arguments is TRUE and returns TRUE if any condition is met. Example:
+Is VIP Customer = OR(Customers[TotalPurchases] > 1000, Customers[SubscriptionLevel] = "Premium")
+
+SWITCH(): The SWITCH function evaluates multiple expressions and returns a result based on conditions. Example:
+Category Group = SWITCH(Products[Category],
+    "Electronics", "Tech",
+    "Clothing", "Fashion",
+    "Other"
+)
+
+TRUE() and FALSE(): These functions return TRUE and FALSE, respectively. They are often used in combination with other logical functions.
+
+#########################################################################################################################################################################################
+#########################################################################################################################################################################################
+
+TEXT Function:-
+
+ In DAX (Data Analysis Expressions), text functions allow you to manipulate and format text strings within tabular models.
+These functions are based on the library of string functions in Excel but have been modified to work with tables and columns.
+Let’s explore some common text functions available in DAX:
+
+COMBINEVALUES:
+Joins two or more text strings into one text string.
+Example:
+FullName = COMBINEVALUES(" ", Customers[FirstName], Customers[LastName])
+This creates a new column called FullName by combining the first name and last name from the Customers table.
+
+CONCATENATE:
+Joins two text strings into one text string.
+Example:
+ProductDescription = CONCATENATE(Products[Brand], " ", Products[ProductName])
+This combines the brand and product name to create a descriptive text for each product.
+
+CONCATENATEX:
+Concatenates the result of an expression evaluated for each row in a table.
+Example:
+AllCategories = CONCATENATEX(Categories, Categories[CategoryName], ", ")
+This creates a comma-separated list of all category names.
+
+EXACT:
+Compares two text strings and returns TRUE if they are exactly the same (case-sensitive), FALSE otherwise.
+Example:
+IsMatch = EXACT(Orders[CustomerName], Customers[FullName])
+This checks if the customer name in orders matches the full name in the customers table.
+
+FIND:
+Returns the starting position of one text string within another text string (case-sensitive).
+Example:
+PositionOfKeyword = FIND("Power", BlogPosts[Content])
+This finds the position of the word “Power” in a blog post content.
+
+LEFT:
+Returns the specified number of characters from the start of a text string.
+Example:
+FirstInitial = LEFT(Employees[EmployeeName], 1)
+This extracts the first letter of each employee’s name.
+
+RIGHT:
+Returns the last character or characters in a text string.
+Example:
+FileExtension = RIGHT(Files[FileName], 3)
+This extracts the file extension (e.g., “.doc”, “.xlsx”) from file names.
+
+MID:
+Returns a string of characters from the middle of a text string, given a starting position and length.
+Example:
+MiddleName = MID(Personnel[FullName], 6, 5)
+This extracts the middle name from the full name.
+
+UPPER and LOWER:
+Converts text to uppercase or lowercase, respectively.
+Example:
+CapitalizedName = UPPER(Products[ProductName])
+This converts product names to uppercase.
+
+REPLACE:
+Replaces part of a text string with a different text string.
+Example:
+CleanedAddress = REPLACE(Customers[Address], "St.", "Street")
+This replaces occurrences of “St.” with “Street” in customer addresses.
+
+LEN:
+Returns the number of characters in a text string.
+Example:
+NameLength = LEN(Employees[EmployeeName])
+This calculates the length of each employee’s name.
+
+
+These text functions allow you to perform various operations on text data, such as cleaning, formatting, and extracting relevant information.
+Feel free to explore them further based on your specific use cases! 🚀📊
+
+#######################################################################################################################################################################################
+#######################################################################################################################################################################################
+
+Filter Functions:-
+
+Filter functions in DAX are powerful tools for managing and manipulating data in Power BI. They allow you to filter tables and columns,
+and can be used to create complex calculations. Here are some common filter functions with their syntax and examples:
+
+CALCULATE():
+The CALCULATE() function modifies the filter context of a calculation.
+Example:
+Total Sales = CALCULATE(SUM(Sales[Amount]), Sales[Year] = 2023)
+This calculates the total sales for the year 2023.
+
+FILTER():
+The FILTER() function returns a table that has been filtered based on a specified condition.
+Example:
+High Revenue Customers = FILTER(Customers, Customers[Revenue] > 100000)
+This filters customers with revenue greater than $100,000.
+
+ALL():
+The ALL() function removes filters from a table or column.
+Example:
+Total Sales (All Years) = CALCULATE(SUM(Sales[Amount]), ALL(Sales[Year]))
+This calculates the total sales across all years, ignoring any year filters.
+
+ALLEXCEPT():
+The ALLEXCEPT() function removes filters from all columns except specified columns.
+Example:
+Total Sales (All Except Product) = CALCULATE(SUM(Sales[Amount]), ALLEXCEPT(Sales, Products))
+This calculates the total sales for all products, ignoring other filters.
+
+RELATED():
+The RELATED() function follows relationships between tables.
+Example:
+Total Orders = SUM(Orders[Quantity]) + RELATED(Products[BackorderQuantity])
+This adds the backorder quantity related to each order.
+
+RELATEDTABLE():
+The RELATEDTABLE() function returns a table related to the current row.
+Example:
+Related Customers = RELATEDTABLE(Customers)
+This returns the customers related to the current product.
+
+DISTINCT():
+The DISTINCT() function returns a table with unique values from a column.
+Example:
+Unique Categories = DISTINCT(Products[Category])
+This lists unique product categories.
+
+VALUES():
+The VALUES() function returns a table with distinct values from a column.
+Example:
+Unique Years = VALUES(Sales[Year])
+This lists unique years from the sales data.
+
+EARLIER() or EARLIEST():
+The EARLIER() function refers to the value of a column in an outer evaluation context.
+Example:
+Running Total = SUMX(FILTER(Orders, Orders[OrderDate] <= EARLIER(Orders[OrderDate])), Orders[Quantity])
+This calculates the running total of quantities ordered.
+
+HASONEVALUE():
+The HASONEVALUE() function checks if a column has only one distinct value in the current filter context.
+Example:
+IsSingleProduct = HASONEVALUE(Products[ProductName])
+This checks if only one product is selected.
+
+HASONEFILTER():
+The HASONEFILTER() function checks if a single filter is applied to a column.
+Example:
+IsSingleYearFilter = HASONEFILTER(Sales[Year])
+This checks if only one year filter is applied.
+
+ISFILTERED():
+The ISFILTERED() function checks if a column is filtered.
+Example:
+IsFilteredByRegion = ISFILTERED(Orders[Region])
+This checks if the orders are filtered by region.
+
+USERELATIONSHIP():
+The USERELATIONSHIP() function specifies which relationship to use in calculations.
+Example:
+Total Sales (Alternate Relationship) = CALCULATE(SUM(Sales[Amount]), USERELATIONSHIP(Sales[CustomerID], Customers[AlternateCustomerID]))
+This calculates sales using an alternate relationship between tables.
+
+##########################################################################################################################################################################
