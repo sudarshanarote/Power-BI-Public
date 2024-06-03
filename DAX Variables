@@ -1,0 +1,35 @@
+DAX (Data Analysis Expressions) variables are a powerful feature that can enhance your DAX formulas in several ways. Let’s explore how they work and their benefits:
+
+Improve Performance:
+When you have complex expressions that involve repeating calculations, using variables can significantly improve performance.
+Instead of evaluating the same expression multiple times, you can store the result in a variable and reuse it within your formula.
+For example, consider calculating year-over-year (YoY) sales growth. The initial formula might look like this:
+
+Sales YoY Growth % = DIVIDE(
+    ([Sales] - CALCULATE([Sales], PARALLELPERIOD('Date'[Date], -12, MONTH))),
+    CALCULATE([Sales], PARALLELPERIOD('Date'[Date], -12, MONTH))
+)
+
+By using a variable, we can make it more efficient:
+
+Sales YoY Growth % = VAR SalesPriorYear = CALCULATE([Sales], PARALLELPERIOD('Date'[Date], -12, MONTH))
+RETURN DIVIDE(([Sales] - SalesPriorYear), SalesPriorYear)
+
+Improve Readability:
+Well-named variables make your formulas easier to read and understand.
+In the improved formula above, the variable name SalesPriorYear clearly indicates its purpose.
+
+Simplify Debugging:
+Variables allow you to test specific parts of your formula.
+Temporarily comment out the main expression and return only the variable value for debugging:
+
+Sales YoY Growth % = VAR SalesPriorYear = CALCULATE([Sales], PARALLELPERIOD('Date'[Date], -12, MONTH))
+RETURN
+--DIVIDE(([Sales] - SalesPriorYear), SalesPriorYear)
+SalesPriorYear
+
+Reduce Complexity:
+In earlier versions of DAX, variables were not supported, and complex expressions had to use functions like EARLIER or EARLIEST.
+Variables allow you to break down logic into smaller steps, making your formulas more manageable.
+Remember, DAX variables are a valuable tool for creating efficient, readable, and maintainable formulas. If you have any specific use cases or need further clarification, feel free to ask! 😊
+
