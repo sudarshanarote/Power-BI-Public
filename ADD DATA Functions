@@ -1,0 +1,30 @@
+ADD DATA Functions:-
+        Functions used to simplify or add columns based on existing data in the model.
+
+
+SELECTCOLUMNS:
+        The SELECTCOLUMNS function creates a new table by selecting specific columns from an existing table.
+        It allows you to create a projection of the original table with only the desired columns.
+
+Syntax: SELECTCOLUMNS(<table>, <column1>, <column2>, ...)
+
+Example: Suppose you have a Sales table, and you want to create a new table with only the ProductID and SalesAmount columns:
+SalesProjection = SELECTCOLUMNS(Sales, Sales[ProductID], Sales[SalesAmount])
+-----------------------------------------------------------------------------------------------------------------------------------------
+ADDCOLUMNS:
+        The ADDCOLUMNS function creates a new table by adding calculated columns based on expressions.
+        It evaluates expressions in a row context and adds the results as new columns.
+
+Syntax: ADDCOLUMNS(<table>, <new_column1>, <expression1>, <new_column2>, <expression2>, ...)
+
+Example: To add a calculated column for total profit:
+SalesWithProfit = ADDCOLUMNS(Sales, "TotalProfit", Sales[SalesAmount] - Sales[Cost])
+-----------------------------------------------------------------------------------------------------------------------------------------
+SUMMARIZE:
+      The SUMMARIZE function groups data based on specified columns and calculates summary values.
+      It returns a new table with summarized data.
+
+Syntax: SUMMARIZE(<table>, <group_by_column1>, <group_by_column2>, ..., <aggregation_column1>, <aggregation_function1>, ...)
+
+Example: To summarize total sales by product category:
+SalesSummary = SUMMARIZE(Sales, Products[Category], "TotalSales", SUM(Sales[SalesAmount]))
