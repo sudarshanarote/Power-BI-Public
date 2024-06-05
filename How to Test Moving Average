@@ -1,0 +1,51 @@
+Moving Average Video Link:-
+https://www.youtube.com/watch?v=FLjygam5x-I&ab_channel=Goodly
+
+Step 1:-
+Create a Measure of Moving Average.
+
+
+MovingAvg = 
+VAR Period = 
+    DATESINPERIOD(
+        'Calendar'[Date], 
+        MAX('Calendar'[Date]), 
+        -3, 
+        MONTH
+    )
+
+VAR TotalSales = 
+    CALCULATE(
+        [Total Sales], 
+        Period
+    )
+
+VAR Mon = 
+    CALCULATE(
+        DISTINCTCOUNT('Calendar'[Month]), 
+        Period
+    )
+
+RETURN 
+    DIVIDE(TotalSales, Mon)
+
+
+🢃
+
+Step 2:-
+
+Create a Measure to Check Moving Average is Correct or NOT.
+
+MovingAvgCheck =
+VAR Period = 
+    CALCULATETABLE(
+        SUMMARIZE('Calendar', 'Calendar'[Month], 'Calendar'[MIndex], 'Calendar'[Year]),
+        DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -3, MONTH)
+    )
+
+RETURN
+CONCATENATEX(
+    Months,
+    FORMAT([Total Sales], "0.0"), 
+    ","
+) & " / " & COUNTROWS(Period)
