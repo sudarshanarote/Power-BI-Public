@@ -1,0 +1,10 @@
+RollingAvg =
+VAR NumDays = 7
+VAR Rolling_Sum =
+    CALCULATE(
+        SUM(ExampleTable[Amount]),
+        DATESINPERIOD(ExampleTable[Date], LASTDATE(ExampleTable[Date]), -NumDays, DAY)
+    )
+
+RETURN
+Rolling_Sum / NumDays
