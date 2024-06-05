@@ -1,0 +1,39 @@
+Moving Average:-
+        To calculate a moving average in Power BI, you can use DAX (Data Analysis Expressions). A moving average smooths out data over a specified period,
+making it easier to observe trends and patterns.
+
+Example: Calculating a 3-Month Moving Average
+Assuming you have a table called Sales with columns Date and Amount, here’s how you can calculate a 3-month moving average.
+
+1. Create a Date Table
+First, ensure you have a Date table in your model. If you don't have one, you can create it:
+
+dax
+Copy code
+Date = CALENDAR(MIN(Sales[Date]), MAX(Sales[Date]))
+2. Create Relationships
+Ensure that the Date column in your Sales table is related to the Date column in your Date table.
+
+3. Create the Moving Average Measure
+You can now create a measure for the 3-month moving average:
+
+DAX Cod:e- 
+
+3MonthMovingAverage = 
+CALCULATE(
+    AVERAGE(Sales[Amount]),
+    DATESINPERIOD(
+        Date[Date],
+        LASTDATE(Date[Date]),
+        -3,
+        MONTH
+    )
+)
+
+
+Explanation of the Measure
+CALCULATE: Evaluates an expression in a modified filter context.
+AVERAGE(Sales[Amount]): Calculates the average of the Amount column in the Sales table.
+DATESINPERIOD: Returns a table that contains a column of dates shifted by a specified number of intervals. In this case, it shifts by -3 months.
+Date[Date]: The column of dates from the Date table.
+LASTDATE(Date[Date]): The last date in the current context (usually the current row of a visual or table).
