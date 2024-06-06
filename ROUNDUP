@@ -1,0 +1,83 @@
+ROUNDUP:-
+        To calculate age using DATEDIFF and then rounding it up using ROUNDUP, you can create a DAX measure or column that
+calculates the difference between the birth date and the current date in years.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Using DATEDIFF and ROUNDUP to Calculate Age
+Example: Calculating Age as a Column
+Assume you have a table called People with columns Name and BirthDate.
+
+Create a new column:
+
+Age = 
+ROUNDUP(
+    DATEDIFF(People[BirthDate], TODAY(), YEAR),
+    0
+)
+
+In this example:
+
+DATEDIFF(People[BirthDate], TODAY(), YEAR) calculates the difference in years between BirthDate and the current date (TODAY()).
+ROUNDUP(..., 0) rounds the result up to the nearest whole number.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example: Calculating Age as a Measure
+If you prefer to calculate age as a measure, you can do the following:
+
+Create a new measure:
+
+AgeMeasure = 
+ROUNDUP(
+    DATEDIFF(MAX(People[BirthDate]), TODAY(), YEAR),
+    0
+)
+
+In this example:
+MAX(People[BirthDate]) ensures the measure calculates age based on the maximum (latest) birth date in the current context.
+This can be adjusted based on your requirement (e.g., for a specific individual or average age).
+The rest of the calculation is similar to the column example, rounding up the age to the nearest whole number.
+#########################################################################################################################################################################################
+
+Practical Use
+          Using ROUNDUP ensures that if someone is, for example, 25 years and 10 months old, they will be considered 26 rather than rounding down to 25.
+
+Full Example
+Assume you have the following data in your People table:
+
++-------+------------+
+| Name  | BirthDate  |
++-------+------------+
+| John  | 1995-04-23 |
++-------+------------+
+| Sarah | 1988-11-30 |
++-------+------------+
+| Mike  | 2002-06-15 |
++-------+------------+
+
+To calculate their ages as a new column in Power BI:
+
+Go to your People table.
+
+Add a new column and use the following DAX formula:
+
+Age = 
+ROUNDUP(
+    DATEDIFF(People[BirthDate], TODAY(), YEAR),
+    0
+)
+
+This will add a column that calculates each person's age, rounded up to the nearest whole year.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+To calculate their ages as a measure:
+
+Create a new measure in your Power BI model:
+
+AgeMeasure = 
+ROUNDUP(
+    DATEDIFF(MAX(People[BirthDate]), TODAY(), YEAR),
+    0
+)
+
+
+This measure can be used in visualizations where you need to display or work with ages dynamically based on the context.
