@@ -1,0 +1,103 @@
+ROUNDUP AND ROUNDDOWN AND FLOOR:-
+            In DAX, the functions ROUNDUP, ROUNDDOWN, and FLOOR are used to manipulate numbers by rounding them up, rounding them down, or
+rounding them down to a specified multiple, respectively. These functions are particularly useful for formatting numbers and performing calculations that require specific rounding rules.
+
+ROUNDUP
+The ROUNDUP function rounds a number up, away from zero.
+
+Syntax
+
+ROUNDUP(<number>, <num_digits>)
+number: The number you want to round up.
+num_digits: The number of digits to which you want to round the number. Positive values indicate digits after the decimal point,
+and negative values indicate digits before the decimal point.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example
+Round up the value 3.14159 to 2 decimal places.
+
+dax
+
+RoundedUpValue = ROUNDUP(3.14159, 2)
+Result: 3.15
+#########################################################################################################################################################################################
+
+ROUNDDOWN
+The ROUNDDOWN function rounds a number down, towards zero.
+
+Syntax
+
+ROUNDDOWN(<number>, <num_digits>)
+number: The number you want to round down.
+num_digits: The number of digits to which you want to round the number. Positive values indicate digits after the decimal point, 
+and negative values indicate digits before the decimal point.
+
+Example
+Round down the value 3.14159 to 2 decimal places.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RoundedDownValue = ROUNDDOWN(3.14159, 2)
+Result: 3.14
+#######################################################################################################################################################################################
+
+FLOOR
+The FLOOR function rounds a number down to the nearest multiple of a specified significance.
+
+Syntax
+FLOOR(<number>, <significance>)
+
+number: The number you want to round.
+significance: The multiple to which you want to round.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example
+Round the value 3.14159 down to the nearest multiple of 0.5.
+
+dax
+FlooredValue = FLOOR(3.14159, 0.5)
+Result: 3.0
+#######################################################################################################################################################################################
+Practical Applications
+        Financial Calculations
+              Pricing: Round prices up to the nearest cent, dollar, or another currency unit for setting retail prices.
+              Discounts: Round discounts down to avoid giving away more than intended.
+              Tax Calculations: Use FLOOR to round taxable amounts to the nearest specified multiple for tax brackets.
+
+        Data Formatting
+              Reporting: Format numbers in reports to a consistent number of decimal places.
+              Data Preparation: Clean and prepare data for analysis by rounding numbers according to specific rules.
+
+########################################################################################################################################################################################
+
+Key Points
+Direction of Rounding:
+            ROUNDUP always rounds numbers up, away from zero.
+            ROUNDDOWN always rounds numbers down, towards zero.
+            FLOOR rounds numbers down to the nearest specified multiple.
+
+Precision Control: These functions allow for precise control over the number of digits or the specific multiple to which numbers are rounded, enabling customized data formatting.
+##########################################################################################################################################################################################
+
+Examples in a Practical Scenario
+
+Example 1: Rounding Up Sales Amounts
+Suppose you have a Sales table with a column SalesAmount. You want to round up all sales amounts to the nearest whole number.
+
+RoundedSalesAmount = ROUNDUP(Sales[SalesAmount], 0)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 2: Rounding Down Prices
+Suppose you have a Products table with a column Price. You want to round down all prices to one decimal place.
+
+dax
+
+RoundedDownPrice = ROUNDDOWN(Products[Price], 1)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 3: Flooring Transaction Amounts
+Suppose you have a Transactions table with a column Amount. You want to round all amounts down to the nearest 10 units.
+
+FlooredTransactionAmount = FLOOR(Transactions[Amount], 10)
+
+By using ROUNDUP, ROUNDDOWN, and FLOOR, you can effectively manage numerical data, ensuring it meets specific rounding rules and formatting requirements,
+which is essential for accurate financial reporting, data analysis, and presentation in Power BI.
