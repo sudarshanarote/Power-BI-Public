@@ -1,0 +1,72 @@
+SUMX:-
+    SUMX is a DAX function that iterates over a table, evaluates an expression for each row, and then sums the resulting values.
+This function is particularly useful when you need to perform a calculation on each row of a table and then aggregate the results.
+
+Syntax
+
+SUMX(table, expression)
+table: The table over which to iterate.
+expression: The expression to evaluate for each row in the table.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Examples
+Example 1: Basic Calculation
+Suppose you have a table Sales with columns Quantity and PricePerUnit. You want to calculate
+the total sales amount by multiplying Quantity and PricePerUnitfor each row and then summing the results.
+
+dax
+Copy code
+TotalSalesAmount = 
+SUMX(
+    Sales,
+    Sales[Quantity] * Sales[PricePerUnit]
+)
+
+In this example, SUMX iterates over each row in the Sales table, calculates Quantity * PricePerUnit for each row, and then sums these values to get the total sales amount.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 2: Using Related Tables
+Suppose you have two tables: Sales and Products. Sales has columns ProductID, Quantity, and PricePerUnit,
+while Products has columns ProductID and Discount.You want to calculate the total sales amount after applying the discount.
+
+dax
+Copy code
+TotalSalesAfterDiscount = 
+SUMX(
+    Sales,
+    Sales[Quantity] * Sales[PricePerUnit] * (1 - RELATED(Products[Discount]))
+)
+
+In this example, SUMX calculates the sales amount after applying the discount for each row in the Sales table and then sums these values.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 3: Conditional Calculation
+Suppose you want to calculate the total sales amount only for a specific category. The Sales table includes a Category column.
+
+TotalSalesForCategory = 
+SUMX(
+    FILTER(Sales, Sales[Category] = "Electronics"),
+    Sales[Quantity] * Sales[PricePerUnit]
+)
+
+Here, SUMX first filters the Sales table to include only rows where the Category is "Electronics" and then sums the sales amount for these filtered rows.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use Cases
+        1) Row-wise Calculations: When you need to perform calculations on each row of a table before summing the results.
+        2) Complex Aggregations: Creating complex aggregate measures that cannot be achieved with simple aggregation functions like SUM.
+        3) Conditional Aggregations: Summing values based on specific conditions or criteria.
+        4) Using Related Tables: When calculations involve data from related tables, making use of functions like RELATED or RELATEDTABLE.
+
+Key Points
+        1) Iterator Function: SUMX iterates over each row of the specified table, evaluating the expression for each row.
+        2) Expression Evaluation: The expression can involve any DAX calculation, including column references, mathematical operations, and other DAX functions.
+        3) Table Context: SUMX respects the row context and can be used within other DAX functions that modify the context, such as CALCULATE, FILTER, and others.
+
+Practical Applications
+        1) Financial Analysis: Calculating total expenses, revenues, or profits based on detailed financial records.
+        2) Sales Analysis: Summing sales amounts, including conditional calculations based on product categories, regions, or time periods.
+        3) Inventory Management: Calculating total inventory value by multiplying quantities by unit costs, possibly adjusted for discounts or other factors.
+        4) Custom Metrics: Creating custom metrics that require row-by-row calculations, such as weighted sums, adjusted totals, or specific business logic implementations.
