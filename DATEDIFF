@@ -1,0 +1,62 @@
+DATEDIFF:-
+    The DATEDIFF function in DAX is used to calculate the difference between two dates. It returns the count of interval boundaries crossed between the start date and end date.
+This function is useful for time-based calculations, such as finding the number of days, months, or years between two dates.
+
+Syntax
+
+DATEDIFF(<start_date>, <end_date>, <interval>)
+start_date: The start date.
+end_date: The end date.
+interval: The interval to use for calculating the difference. The interval can be one of the following: SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, YEAR.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Examples
+Example 1: Calculating Days Between Two Dates
+Suppose you have a Sales table with columns OrderDate and ShipDate. You want to calculate the number of days between the order date and the ship date.
+
+dax
+
+DaysBetweenOrderAndShip = 
+DATEDIFF(Sales[OrderDate], Sales[ShipDate], DAY)
+In this example, DATEDIFF calculates the difference in days between OrderDate and ShipDate.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 2: Calculating Months Between Two Dates
+Suppose you have a Customer table with columns CustomerID and SignUpDate. You want to calculate the number of months since a customer signed up.
+
+dax
+
+MonthsSinceSignUp = 
+DATEDIFF(Customer[SignUpDate], TODAY(), MONTH)
+Here, DATEDIFF calculates the difference in months between SignUpDate and the current date (TODAY()).
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 3: Calculating Years of Service
+Suppose you have an Employees table with columns EmployeeID and HireDate. You want to calculate the number of years each employee has been with the company.
+
+dax
+
+YearsOfService = 
+DATEDIFF(Employees[HireDate], TODAY(), YEAR)
+
+In this example, DATEDIFF calculates the difference in years between HireDate and the current date (TODAY()).
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Practical Applications
+        1) Employee Tenure: Calculate the length of service or tenure for employees.
+        2) Customer Loyalty: Measure the duration of customer relationships based on sign-up or first purchase dates.
+        3) Project Management: Determine the duration of projects or tasks by calculating the difference between start and end dates.
+        4) Sales Analysis: Analyze the time taken for order fulfillment by calculating the days between order and shipment dates.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Key Points
+        1) Flexibility in Intervals: DATEDIFF can calculate differences across various intervals (seconds, minutes, hours, days, weeks, months, quarters, and years),
+          making it versatile for different use cases.
+        2) Date Arithmetic: Simplifies date arithmetic by providing a straightforward way to calculate the difference between two dates without complex date functions or custom logic.
+        3) Time Intelligence: Useful for creating time intelligence measures that require date differences, enhancing time-based analysis in Power BI.
+
+Conclusion
+        The DATEDIFF function in DAX is a powerful tool for calculating the difference between two dates across various intervals.
+        Its flexibility and ease of use make it an essential function for time-based calculations, enabling you to perform sophisticated
+        date arithmetic and enhance the time intelligence capabilities of your Power BI reports.
