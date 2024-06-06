@@ -1,5 +1,3 @@
-Moving Average Video Link:-
-https://www.youtube.com/watch?v=FLjygam5x-I&ab_channel=Goodly
 
 Step 1:-
 Create a Measure of Moving Average.
@@ -44,8 +42,17 @@ VAR Period =
     )
 
 RETURN
+
 CONCATENATEX(
     Months,
     FORMAT([Total Sales], "0.0"), 
     ","
 ) & " / " & COUNTROWS(Period)
+
+#########################################################################################################################################
+
+
+Moving Average Video Link:-
+https://www.youtube.com/watch?v=FLjygam5x-I&ab_channel=Goodly
+
+
