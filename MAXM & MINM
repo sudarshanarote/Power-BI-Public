@@ -1,0 +1,41 @@
+MAXM & MINM:-
+        In DAX, MAXX and MINX are aggregation functions used to evaluate an expression for each row of a table and then return the maximum or minimum value from the evaluated results.
+These functions are particularly useful when you need to find the highest or lowest value based on a calculated expression over a table.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MAXX:-
+    MAXX calculates the maximum value over an expression evaluated for each row in a table.
+
+Syntax
+
+MAXX(table, expression)
+table: The table over which to iterate.
+expression: The expression to evaluate for each row in the table.
+
+Example
+Suppose you have a table Sales with columns Quantity and PricePerUnit. You want to find the maximum sales amount (Quantity * PricePerUnit).
+
+MaxSalesAmount = 
+MAXX(
+    Sales,
+    Sales[Quantity] * Sales[PricePerUnit]
+)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MINX:-
+    MINX calculates the minimum value over an expression evaluated for each row in a table.
+
+Syntax
+
+MINX(table, expression)
+table: The table over which to iterate.
+expression: The expression to evaluate for each row in the table.
+
+Example
+Suppose you have the same Sales table and you want to find the minimum sales amount.
+
+MinSalesAmount = 
+MINX(
+    Sales,
+    Sales[Quantity] * Sales[PricePerUnit]
+)
