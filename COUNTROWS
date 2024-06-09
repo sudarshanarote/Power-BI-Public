@@ -1,0 +1,74 @@
+COUNTROWS:-
+      The COUNTROWS function in DAX is used to count the number of rows in a table or table expression. This function is straightforward and can be very useful 
+for various analytical purposes in Power BI, such as counting the number of transactions, the number of items in a category, or the number of days in a date range.
+
+Syntax
+
+COUNTROWS(<table>)
+
+<table>: The table or table expression whose rows you want to count.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 1: Counting Total Rows in a Table
+Assume you have a Sales table, and you want to count the total number of rows (transactions) in the table.
+
+Using COUNTROWS as a Measure:
+
+dax
+
+TotalTransactions = COUNTROWS(Sales)
+In this example:
+
+Sales is the table you are counting the rows of.
+COUNTROWS(Sales) returns the total number of rows in the Sales table.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 2: Counting Rows Based on a Filter
+You can also use COUNTROWS with a filtered table to count the rows that meet specific criteria. For example,
+you want to count the number of transactions where the SalesAmount is greater than 100.
+
+Using COUNTROWS with CALCULATE:
+
+dax
+
+TransactionsAbove100 = CALCULATE(COUNTROWS(Sales), Sales[SalesAmount] > 100)
+
+In this example:
+
+CALCULATE changes the context in which the data is evaluated.
+COUNTROWS(Sales) counts the rows of the Sales table.
+Sales[SalesAmount] > 100 filters the rows where SalesAmount is greater than 100.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 3: Counting Rows in a Related Table
+If you have a relationship between two tables, you can count the rows in the related table. Assume you have a Customers table and a Sales table,
+and you want to count the number of sales transactions for each customer.
+
+Using COUNTROWS in a Calculated Column or Measure:
+
+dax
+
+SalesCountPerCustomer = 
+CALCULATE(
+    COUNTROWS(Sales),
+    RELATEDTABLE(Sales)
+)
+In this example:
+
+CALCULATE modifies the context of the calculation.
+COUNTROWS(Sales) counts the rows of the Sales table.
+RELATEDTABLE(Sales) returns a table that is filtered to the current customer context.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 4: Counting Distinct Rows in a Table
+You might want to count the number of distinct rows based on a certain column. For example, count the number of distinct customers who made a purchase.
+
+Using COUNTROWS with DISTINCT:
+
+dax
+
+DistinctCustomers = COUNTROWS(DISTINCT(Sales[CustomerID]))
+In this example:
+
+DISTINCT(Sales[CustomerID]) returns a table with unique CustomerID values.
+COUNTROWS(DISTINCT(Sales[CustomerID])) counts the number of distinct customers.
