@@ -1,0 +1,56 @@
+DISTINCTCOUNT:-
+        The DISTINCTCOUNT function in DAX is used to count the number of unique values in a column. This is particularly useful when you need to determine
+the number of distinct entries in a dataset, such as counting the number of unique customers, products, or any other category.
+
+Syntax
+
+DISTINCTCOUNT(<column>)
+
+<column>: The column that contains the values for which you want to count the distinct entries.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 1: Counting Unique Customers
+Assume you have a Sales table with the following columns: CustomerID, ProductID, Date, and SalesAmount. You want to count the number of unique customers who made a purchase.
+
+Using DISTINCTCOUNT as a Measure:
+
+dax
+
+UniqueCustomers = DISTINCTCOUNT(Sales[CustomerID])
+In this example:
+
+Sales[CustomerID] is the column that contains the customer IDs.
+DISTINCTCOUNT(Sales[CustomerID]) calculates the number of unique customer IDs in the Sales table.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 2: Counting Unique Products Sold
+Similarly, if you want to count the number of unique products sold, you can create another measure:
+
+dax
+
+UniqueProductsSold = DISTINCTCOUNT(Sales[ProductID])
+
+In this example:
+
+Sales[ProductID] is the column that contains the product IDs.
+DISTINCTCOUNT(Sales[ProductID]) calculates the number of unique product IDs in the Sales table.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example 3: Counting Unique Sales Dates
+If you want to count the number of unique sales dates:
+
+dax
+
+UniqueSalesDates = DISTINCTCOUNT(Sales[Date])
+
+In this example:
+
+Sales[Date] is the column that contains the sales dates.
+DISTINCTCOUNT(Sales[Date]) calculates the number of unique dates on which sales were made.
+Using DISTINCTCOUNT in Visualizations
+You can use these measures in your Power BI visualizations to show insights about your data. For instance:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Card Visualization:
+Add a card visualization to show the total number of unique customers, unique products sold, or unique sales dates.
+Table or Matrix Visualization:
+Combine these measures with other dimensions to show the distinct count in the context of categories or time periods.
