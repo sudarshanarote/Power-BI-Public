@@ -1,0 +1,70 @@
+SUM and SUMX:-
+        In DAX (Data Analysis Expressions), SUM and SUMX are both used to aggregate data, but they operate differently.
+Here’s a detailed explanation of each function, their syntax, and examples to help you understand how and when to use them in Power BI.
+
+SUM:-
+    SUM is used to sum up all the values in a single column. It’s a straightforward aggregation function that works on a column of numeric data.
+
+Syntax
+
+SUM(<column>)
+
+<column>: The column that contains the numeric values to be summed.
+
+
+Example
+Assume you have a table Sales with a column SalesAmount. You want to calculate the total sales amount.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Using SUM as a Measure:
+
+dax
+
+TotalSalesAmount = SUM(Sales[SalesAmount])
+
+In this example:
+
+Sales[SalesAmount] is the column that contains the sales amounts.
+SUM(Sales[SalesAmount]) calculates the sum of all values in the SalesAmount column.
+##########################################################################################################################################################################################
+
+SUMX:-
+    SUMX is an iterator function that performs row-by-row calculations on a table and then sums the results.
+It is more flexible than SUM because it allows you to apply a more complex expression to each row before summing.
+
+Syntax
+
+SUMX(<table>, <expression>)
+
+<table>: The table to iterate over.
+<expression>: The expression to be evaluated for each row of the table, which results in a numeric value to be summed.
+
+Example
+Assume you have a table Sales with columns Quantity and UnitPrice. You want to calculate the total sales amount
+by multiplying Quantity and UnitPrice for each row and then summing them up.
+
+Using SUMX as a Measure:
+
+dax
+
+TotalSalesAmount = SUMX(Sales, Sales[Quantity] * Sales[UnitPrice])
+
+In this example:
+
+Sales is the table to iterate over.
+Sales[Quantity] * Sales[UnitPrice] is the expression that calculates the sales amount for each row.
+SUMX(Sales, ...) iterates over each row in the Sales table, evaluates the expression, and then sums the results.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Differences Between SUM and SUMX
+Operation Scope:
+
+SUM operates directly on a single column and sums its values.
+SUMX iterates over a table and performs a row-by-row calculation based on the provided expression before summing the results.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Use Cases:
+
+Use SUM when you need to sum the values in a single column.
+Use SUMX when you need to perform calculations on each row of a table and then sum the results.
