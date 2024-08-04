@@ -1,0 +1,40 @@
+In SQL databases, schemas are a way to logically group database objects such as tables, views, procedures, and other elements. 
+The types of SQL schemas can be categorized based on their design and usage. Here are the common types:
+
+Star Schema:
+
+Structure: Consists of a central fact table connected to multiple dimension tables.
+Usage: Commonly used in data warehousing and business intelligence.
+Advantages: Simple design and easy to understand; efficient for querying large datasets.
+Example: A sales database where the central fact table contains sales data, and dimension tables include time, product, and store information.
+Snowflake Schema:
+
+Structure: An extension of the star schema where dimension tables are normalized into multiple related tables.
+Usage: Used in data warehousing where normalization is needed to eliminate redundancy.
+Advantages: Reduces data redundancy and improves data integrity.
+Example: A sales database where the product dimension is further broken down into product categories and subcategories.
+Galaxy Schema (or Fact Constellation Schema):
+
+Structure: Contains multiple fact tables sharing dimension tables.
+Usage: Suitable for complex systems with multiple fact tables representing different business processes.
+Advantages: Flexible and supports complex queries and analyses.
+Example: A retail database with separate fact tables for sales, inventory, and shipping, all sharing common dimension tables like time and product.
+Flat Schema:
+
+Structure: All data is stored in a single table without any hierarchy or relationships.
+Usage: Simple applications or small datasets where relationships between data are minimal.
+Advantages: Simplifies data retrieval and maintenance for small datasets.
+Example: A small contact list where all details are stored in a single table.
+Hierarchical Schema:
+
+Structure: Organizes data in a tree-like structure with parent-child relationships.
+Usage: Used in applications where data naturally fits into a hierarchy.
+Advantages: Efficient for representing nested data and hierarchical relationships.
+Example: An organizational chart database where each employee has a direct manager.
+Network Schema:
+
+Structure: Similar to the hierarchical schema but allows multiple parent-child relationships, forming a graph structure.
+Usage: Suitable for complex relationships where entities can have multiple parents and children.
+Advantages: Flexible and can represent more complex relationships than hierarchical schemas.
+Example: A supply chain database where a product can be supplied by multiple suppliers and a supplier can supply multiple products.
+Each type of schema has its own advantages and is chosen based on the specific requirements of the application and the nature of the data being managed.
