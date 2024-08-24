@@ -1,0 +1,39 @@
+In Power BI and DAX, FILTER, KEEPFILTERS, and REMOVEFILTERS are functions that manage how filters are applied in calculations. Here’s how they differ:
+
+FILTER:
+
+Purpose: The FILTER function returns a table that has been filtered based on the conditions you specify. It’s commonly used within measures to apply specific filtering logic.
+Usage: It’s a table function, so it returns a table rather than a scalar value. FILTER is often used inside functions like CALCULATE to define complex filtering conditions.
+Syntax: FILTER(Table, Condition)
+
+Example:
+HighSales = CALCULATE(SUM(Sales[SalesAmount]), FILTER(Sales, Sales[SalesAmount] > 1000))
+This calculates the total sales where the SalesAmount is greater than 1000.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+KEEPFILTERS:
+
+Purpose: KEEPFILTERS preserves existing filters when new filters are applied. It’s used within the CALCULATE function to ensure that the new filters do not override existing ones but are combined with them.
+Usage: Helps in additive filtering scenarios where you want to keep the existing filters and apply additional conditions.
+Syntax: KEEPFILTERS(Expression)
+Example:
+
+FilteredSales = CALCULATE(SUM(Sales[SalesAmount]), KEEPFILTERS(Sales[Region] = "East"))
+This calculates sales for the "East" region without removing any existing filters applied to the data.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+REMOVEFILTERS:
+
+Purpose: REMOVEFILTERS removes all filters from the specified columns or tables. It’s similar to ALL, but with the added benefit of working inside a CALCULATE statement where it selectively removes filters on specified columns or tables.
+Usage: It’s used to clear specific filters while keeping others intact, useful for performing calculations without the influence of certain filters.
+Syntax: REMOVEFILTERS(ColumnName | TableName)
+Example:
+
+TotalSalesWithoutRegionFilter = CALCULATE(SUM(Sales[SalesAmount]), REMOVEFILTERS(Sales[Region]))
+This removes the filter on Region and calculates the total sales.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Key Differences:
+FILTER is used to apply specific conditions and returns a table based on those conditions.
+KEEPFILTERS maintains the existing filters while applying new ones, ensuring the context is additive.
+REMOVEFILTERS clears filters from specific columns or tables, ensuring that calculations are unaffected by those filters.
