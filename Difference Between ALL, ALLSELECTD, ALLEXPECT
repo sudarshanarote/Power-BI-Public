@@ -1,0 +1,32 @@
+In Power BI and DAX (Data Analysis Expressions), ALL, ALLSELECTED, and ALLEXCEPT are functions used to control the filtering context of your calculations.
+
+ALL:
+
+Purpose: Removes all filters from the specified columns or tables. This function is often used to calculate totals or to perform comparisons without any applied filters.
+Usage Example: If you want to calculate the total sales without any filters applied, you would use ALL to remove the current filters.
+Syntax: ALL(TableName[ColumnName]) or ALL(TableName).
+
+Example:
+TotalSales = SUMX(ALL(Sales), Sales[SalesAmount])
+This removes all filters from the Sales table and calculates the total sales amount.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ALLSELECTED:
+
+Purpose: Removes filters based on user selections, but maintains any filters applied in the visual or slicer context.
+It is useful when you want to respect the selections made in visuals but ignore other filters applied in the report.
+Usage Example: When calculating a measure that should only consider the filters applied through visuals and slicers, but not any other context filters.
+Syntax: ALLSELECTED(TableName[ColumnName]) or ALLSELECTED(TableName).
+
+Example:
+SelectedSales = SUMX(ALLSELECTED(Sales), Sales[SalesAmount])
+This calculates the sales amount based on the selections made in the visuals or slicers, ignoring other filters.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ALLEXCEPT:
+Purpose: Removes all filters from the specified columns or tables, except for the filters on the columns you specify. This is useful when you want to retain certain filters while removing others.
+Usage Example: When calculating a measure where you want to keep filters on specific dimensions (e.g., by year) but remove filters on others.
+Syntax: ALLEXCEPT(TableName, TableName[Column1], TableName[Column2]).
+
+Example:
+SalesByProduct = SUMX(ALLEXCEPT(Sales, Sales[Product]), Sales[SalesAmount])
+This calculates the sales amount while keeping the filter on Sales[Product] but ignoring filters on other columns in the Sales table.
