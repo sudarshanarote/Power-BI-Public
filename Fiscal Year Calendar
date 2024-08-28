@@ -22,9 +22,9 @@ RETURN
 #############################################################################################################################################################################################
 
 FiscalDateTable = 
-VAR StartDate = MIN('YourDataTable'[Date])
-VAR EndDate = MAX('YourDataTable'[Date])
-VAR FiscalYearStartMonth = 10 // October
+VAR StartDate = MIN(Data[ Date])
+VAR EndDate = MAX(Data[ Date]) + 365
+VAR FiscalYearStartMonth = 4 // April
 RETURN
 ADDCOLUMNS(
     CALENDAR(StartDate, EndDate),
@@ -35,8 +35,8 @@ ADDCOLUMNS(
     "Weekday", WEEKDAY([Date], 2),
     "Fiscal Year", 
         IF(MONTH([Date]) >= FiscalYearStartMonth, 
-            YEAR([Date]) + 1, 
-            YEAR([Date])
+            YEAR([Date]), 
+            YEAR([Date]) - 1
         ),
     "Fiscal Month Number", 
         IF(MONTH([Date]) >= FiscalYearStartMonth, 
@@ -49,5 +49,7 @@ ADDCOLUMNS(
             QUOTIENT(MONTH([Date]) + 12 - FiscalYearStartMonth, 3) + 1
         ),
     "Fiscal Week Number", 
-        WEEKNUM([Date] - (FiscalYearStartMonth - 1) * 30)
+        VAR FiscalYearStartDate = DATE(YEAR([Date]) - IF(MONTH([Date]) < FiscalYearStartMonth, 1, 0), FiscalYearStartMonth, 1)
+        RETURN 
+            WEEKNUM([Date] - FiscalYearStartDate + 1, 1)
 )
