@@ -18,3 +18,36 @@ RETURN
  MONTH([Date]) >= 1 && MONTH([Date]) <= 3,"Q4"
  )
  )
+
+#############################################################################################################################################################################################
+
+FiscalDateTable = 
+VAR StartDate = MIN('YourDataTable'[Date])
+VAR EndDate = MAX('YourDataTable'[Date])
+VAR FiscalYearStartMonth = 10 // October
+RETURN
+ADDCOLUMNS(
+    CALENDAR(StartDate, EndDate),
+    "Year", YEAR([Date]),
+    "Month", MONTH([Date]),
+    "Month Name", FORMAT([Date], "MMMM"),
+    "Day", DAY([Date]),
+    "Weekday", WEEKDAY([Date], 2),
+    "Fiscal Year", 
+        IF(MONTH([Date]) >= FiscalYearStartMonth, 
+            YEAR([Date]) + 1, 
+            YEAR([Date])
+        ),
+    "Fiscal Month Number", 
+        IF(MONTH([Date]) >= FiscalYearStartMonth, 
+            MONTH([Date]) - FiscalYearStartMonth + 1, 
+            MONTH([Date]) + 12 - FiscalYearStartMonth + 1
+        ),
+    "Fiscal Quarter Number", 
+        IF(MONTH([Date]) >= FiscalYearStartMonth, 
+            QUOTIENT(MONTH([Date]) - FiscalYearStartMonth, 3) + 1, 
+            QUOTIENT(MONTH([Date]) + 12 - FiscalYearStartMonth, 3) + 1
+        ),
+    "Fiscal Week Number", 
+        WEEKNUM([Date] - (FiscalYearStartMonth - 1) * 30)
+)
