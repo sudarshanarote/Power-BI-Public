@@ -1,0 +1,20 @@
+DateTable = 
+VAR StartDate = DATE(2024, 4, 1) 
+VAR EndDate = DATE(2025, 3, 31) 
+RETURN
+ ADDCOLUMNS(
+ CALENDAR(StartDate, EndDate),
+ "Year", YEAR([Date]),
+ "Month", FORMAT([Date], "MMMM"),
+ "Year-Month", FORMAT([Date], "YYYY-MM"),
+ "Day", DAY([Date]),
+ "Day of Week", FORMAT([Date], "dddd"),
+ "Fiscal Quarter", 
+ SWITCH(
+ TRUE(), 
+ MONTH([Date]) >= 4 && MONTH([Date]) <= 6, "Q1",
+ MONTH([Date]) >= 7 && MONTH([Date]) <= 9, "Q2",
+ MONTH([Date]) >= 10 && MONTH([Date]) <= 12, "Q3",
+ MONTH([Date]) >= 1 && MONTH([Date]) <= 3,"Q4"
+ )
+ )
