@@ -1,0 +1,187 @@
+1. Cumulative Total
+Used to calculate the running total over a specified period.
+DAX:
+
+CumulativeTotal = 
+CALCULATE(
+    SUM('Table'[Value]),
+    FILTER(
+        ALL('Table'[Date]),
+        'Table'[Date] <= MAX('Table'[Date])
+    )
+)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Cumulative Average
+Calculates the average over time, accumulating values as the period progresses.
+DAX:
+
+CumulativeAverage = 
+CALCULATE(
+    AVERAGE('Table'[Value]),
+    FILTER(
+        ALL('Table'[Date]),
+        'Table'[Date] <= MAX('Table'[Date])
+    )
+)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Moving Average
+Calculates the average of a set of values over a rolling window (e.g., 3-month moving average).
+DAX:
+
+MovingAverage = 
+CALCULATE(
+    AVERAGE('Table'[Value]),
+    DATESINPERIOD('Table'[Date], MAX('Table'[Date]), -3, MONTH)
+)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Year-to-Date (YTD)
+Accumulated total from the start of the year up to the current date.
+DAX:
+DAX
+Copy code
+TotalYTD = TOTALYTD(SUM('Table'[Value]), 'Table'[Date])
+5. Quarter-to-Date (QTD)
+Accumulated total for the current quarter.
+DAX:
+
+TotalQTD = TOTALQTD(SUM('Table'[Value]), 'Table'[Date])
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Month-to-Date (MTD)
+Accumulated total for the current month.
+DAX:
+
+TotalMTD = TOTALMTD(SUM('Table'[Value]), 'Table'[Date])
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7. Rolling Total
+Total calculated over a rolling window of time (e.g., last 12 months).
+DAX:
+
+RollingTotal = 
+CALCULATE(
+    SUM('Table'[Value]),
+    DATESINPERIOD('Table'[Date], MAX('Table'[Date]), -12, MONTH)
+)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. Running Balance
+Calculates a running balance by adding up previous periods' values.
+DAX:
+
+RunningBalance = 
+CALCULATE(
+    SUM('Table'[Value]),
+    FILTER(
+        ALL('Table'[Date]),
+        'Table'[Date] <= MAX('Table'[Date])
+    )
+)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9. Exponential Moving Average (EMA)
+A weighted moving average where recent data points are given more importance.
+DAX (requires custom formula, may need iteration over periods).
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10. Year-over-Year (YoY) Growth
+Calculates percentage change from the same period in the previous year.
+DAX:
+
+YoY Growth = 
+DIVIDE(
+    SUM('Table'[Value]) - CALCULATE(SUM('Table'[Value]), SAMEPERIODLASTYEAR('Table'[Date])),
+    CALCULATE(SUM('Table'[Value]), SAMEPERIODLASTYEAR('Table'[Date]))
+)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+11. Quarter-over-Quarter (QoQ) Growth
+Calculates growth from one quarter to the next.
+DAX:
+
+QoQ Growth = 
+DIVIDE(
+    SUM('Table'[Value]) - CALCULATE(SUM('Table'[Value]), PREVIOUSQUARTER('Table'[Date])),
+    CALCULATE(SUM('Table'[Value]), PREVIOUSQUARTER('Table'[Date]))
+)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+12. Compound Annual Growth Rate (CAGR)
+Calculates the average annual growth rate over a period.
+DAX:
+
+CAGR = 
+(POWER(DIVIDE(SUM('Table'[EndValue]), SUM('Table'[StartValue])), 1/NumberOfYears) - 1)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13. Rank Calculation
+Rank values based on a certain measure.
+DAX:
+
+Rank = RANKX(ALL('Table'), SUM('Table'[Value]), , DESC, DENSE)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+14. Top N Customers/Products
+Returns the top N customers/products based on a metric.
+DAX:
+
+TopN = 
+TOPN(5, ALL('Table'), [Measure], DESC)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+15. Churn Rate
+Calculates the percentage of customers lost during a period.
+Custom DAX formula based on customer retention or loss over time.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+16. Linear Regression
+Used for forecasting and trend analysis.
+DAX or integration with Python/R for more advanced regression.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+17. Seasonality Analysis
+Examines recurring patterns (e.g., sales during holidays).
+DAX:
+
+SeasonalSales = 
+CALCULATE(SUM('Table'[Sales]), PARALLELPERIOD('Table'[Date], -1, YEAR))
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+18. Customer Lifetime Value (CLV)
+Calculates the total revenue expected from a customer over their lifetime.
+Complex DAX depending on customer behavior models.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+19. Key Performance Indicators (KPIs)
+Visualize performance against targets using DAX logic (e.g., traffic light visuals).
+DAX:
+
+KPI = IF([Measure] > [Target], "Green", IF([Measure] = [Target], "Yellow", "Red"))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+20. Gross Margin Calculation
+Calculates profit as a percentage of revenue.
+DAX:
+
+GrossMargin = DIVIDE(SUM('Table'[Profit]), SUM('Table'[Revenue]))
