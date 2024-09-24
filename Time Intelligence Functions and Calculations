@@ -43,8 +43,7 @@ CALCULATE(
 4. Year-to-Date (YTD)
 Accumulated total from the start of the year up to the current date.
 DAX:
-DAX
-Copy code
+
 TotalYTD = TOTALYTD(SUM('Table'[Value]), 'Table'[Date])
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
