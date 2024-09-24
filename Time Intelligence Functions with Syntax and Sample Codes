@@ -1,0 +1,931 @@
+TOTALYTD (Year-to-Date)
+Usage: Most commonly used to calculate year-to-date totals for metrics like sales, profit, etc.
+Syntax:
+
+TOTALYTD(<expression>, <dates>, [<filter>], [<year_end_date>])
+
+Example:
+
+YTD Sales = TOTALYTD(SUM(Sales[SalesAmount]), Dates[Date])
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SAMEPERIODLASTYEAR
+Usage: Very popular for comparing metrics with the same period in the previous year, useful for year-over-year analysis.
+Syntax:
+
+SAMEPERIODLASTYEAR(<dates>)
+
+Example:
+
+Sales Last Year = CALCULATE(SUM(Sales[SalesAmount]), SAMEPERIODLASTYEAR(Dates[Date]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DATEADD
+Usage: Widely used to shift the date context forward or backward by any number of intervals (days, months, quarters, or years).
+Syntax:
+
+DATEADD(<dates>, <number_of_intervals>, <interval>)
+Example:
+
+Sales Last Year = CALCULATE(SUM(Sales[SalesAmount]), DATEADD(Dates[Date], -1, YEAR))
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TOTALMTD (Month-to-Date)
+Usage: Commonly used to calculate the month-to-date totals for the current month.
+Syntax:
+
+TOTALMTD(<expression>, <dates>, [<filter>])
+
+Example:
+MTD Sales = TOTALMTD(SUM(Sales[SalesAmount]), Dates[Date])
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TOTALQTD (Quarter-to-Date)
+Usage: Used to calculate totals from the beginning of the current quarter to the latest date in the quarter.
+Syntax:
+
+TOTALQTD(<expression>, <dates>, [<filter>])
+Example:
+
+QTD Sales = TOTALQTD(SUM(Sales[SalesAmount]), Dates[Date])
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PREVIOUSYEAR
+Usage: Used to retrieve the data from the previous year for comparison.
+Syntax:
+
+PREVIOUSYEAR(<dates>, [<year_end_date>])
+Example:
+
+Sales Previous Year = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSYEAR(Dates[Date]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PARALLELPERIOD
+Usage: Useful when you want to compare periods of the same length from different time intervals.
+Syntax:
+
+PARALLELPERIOD(<dates>, <number_of_intervals>, <interval>)
+Example:
+
+Sales Parallel Year = CALCULATE(SUM(Sales[SalesAmount]), PARALLELPERIOD(Dates[Date], -1, YEAR))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DATESYTD
+Usage: Retrieves dates in the current year-to-date context, used with cumulative calculations.
+Syntax:
+
+DATESYTD(<dates>, [<year_end_date>])
+Example:
+
+Dates YTD = DATESYTD(Dates[Date])
+Less Common but Useful Time Intelligence Functions
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PREVIOUSQUARTER
+Usage: Used to fetch the data from the previous quarter.
+Syntax:
+
+PREVIOUSQUARTER(<dates>)
+Example:
+
+Sales Previous Quarter = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSQUARTER(Dates[Date]))
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PREVIOUSMONTH
+Usage: Used to retrieve the data from the previous month.
+Syntax:
+
+PREVIOUSMONTH(<dates>)
+Example:
+
+Sales Previous Month = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSMONTH(Dates[Date]))
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PREVIOUSDAY
+Usage: Returns the data for the previous day.
+Syntax:
+
+PREVIOUSDAY(<dates>)
+Example:
+
+Sales Previous Day = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSDAY(Dates[Date]))
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTYEAR
+Usage: Retrieves data for the next year.
+Syntax:
+
+NEXTYEAR(<dates>, [<year_end_date>])
+Example:
+
+Sales Next Year = CALCULATE(SUM(Sales[SalesAmount]), NEXTYEAR(Dates[Date]))
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTQUARTER
+Usage: Fetches the data for the next quarter.
+Syntax:
+
+NEXTQUARTER(<dates>)
+Example:
+
+Sales Next Quarter = CALCULATE(SUM(Sales[SalesAmount]), NEXTQUARTER(Dates[Date]))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTMONTH
+Usage: Fetches data for the next month.
+Syntax:
+
+NEXTMONTH(<dates>)
+Example:
+
+Sales Next Month = CALCULATE(SUM(Sales[SalesAmount]), NEXTMONTH(Dates[Date]))
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTDAY
+Usage: Returns the data for the next day.
+Syntax:
+
+NEXTDAY(<dates>)
+Example:
+
+Sales Next Day = CALCULATE(SUM(Sales[SalesAmount]), NEXTDAY(Dates[Date]))
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+STARTOFYEAR
+Usage: Returns the first date of the year in the current context.
+Syntax:
+
+STARTOFYEAR(<dates>, [<year_end_date>])
+Example:
+
+First Date of Year = STARTOFYEAR(Dates[Date])
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ENDOFYEAR
+Usage: Returns the last date of the year in the current context.
+Syntax:
+
+ENDOFYEAR(<dates>, [<year_end_date>])
+Example:
+
+Last Date of Year = ENDOFYEAR(Dates[Date])
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+STARTOFQUARTER
+Usage: Returns the first date of the quarter in the current context.
+Syntax:
+
+STARTOFQUARTER(<dates>)
+Example:
+D
+First Date of Quarter = STARTOFQUARTER(Dates[Date])
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ENDOFQUARTER
+Usage: Returns the last date of the quarter in the current context.
+Syntax:
+
+ENDOFQUARTER(<dates>)
+Example:
+
+Last Date of Quarter = ENDOFQUARTER(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+STARTOFMONTH
+Usage: Returns the first date of the month in the current context.
+Syntax:
+
+STARTOFMONTH(<dates>)
+Example:
+
+First Date of Month = STARTOFMONTH(Dates[Date])
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ENDOFMONTH
+Usage: Returns the last date of the month in the current context.
+Syntax:
+
+ENDOFMONTH(<dates>)
+Example:
+
+Last Date of Month = ENDOFMONTH(Dates[Date])
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DATESQTD
+Usage: Returns a table that contains the quarter-to-date dates.
+Syntax:
+
+DATESQTD(<dates>)
+Example:
+
+Dates QTD = DATESQTD(Dates[Date])
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DATESMTD
+Usage: Returns a table that contains the month-to-date dates.
+Syntax:
+
+DATESMTD(<dates>)
+Example:
+
+Dates MTD = DATESMTD(Dates[Date])
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CLOSINGBALANCEYEAR
+Usage: Returns the closing balance for a measure at the last date of the year in the current context.
+Syntax:
+
+CLOSINGBALANCEYEAR(<expression>, <dates>, [<filter>], [<year_end_date>])
+Example:
+
+Closing Balance Year = CLOSINGBALANCEYEAR(SUM(Sales[SalesAmount]), Dates[Date])
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CLOSINGBALANCEQUARTER
+Usage: Returns the closing balance for a measure at the last date of the quarter in the current context.
+Syntax:
+
+CLOSINGBALANCEQUARTER(<expression>, <dates>, [<filter>])
+Example:
+
+Closing Balance Quarter = CLOSINGBALANCEQUARTER(SUM(Sales[SalesAmount]), Dates[Date])
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CLOSINGBALANCEMONTH
+Usage: Returns the closing balance for a measure at the last date of the month in the current context.
+Syntax:
+
+CLOSINGBALANCEMONTH(<expression>, <dates>, [<filter>])
+Example:
+
+Closing Balance Month = CLOSINGBALANCEMONTH(SUM(Sales[SalesAmount]), Dates[Date])
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+OPENINGBALANCEYEAR
+Usage: Returns the opening balance for a measure at the first date of the year in the current context.
+Syntax:
+
+OPENINGBALANCEYEAR(<expression>, <dates>, [<filter>], [<year_end_date>])
+Example:
+
+Opening Balance Year = OPENINGBALANCEYEAR(SUM(Sales[SalesAmount]), Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+OPENINGBALANCEQUARTER
+Usage: Returns the opening balance for a measure at the first date of the quarter in the current context.
+Syntax:
+
+OPENINGBALANCEQUARTER(<expression>, <dates>, [<filter>])
+Example:
+
+Opening Balance Quarter = OPENINGBALANCEQUARTER(SUM(Sales[SalesAmount]), Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+OPENINGBALANCEMONTH
+Usage: Returns the opening balance for a measure at the first date of the month in the current context.
+Syntax:
+
+OPENINGBALANCEMONTH(<expression>, <dates>, [<filter>])
+Example:
+
+Opening Balance Month = OPENINGBALANCEMONTH(SUM(Sales[SalesAmount]), Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+DATESBETWEEN
+Usage: Returns a table with the dates between two specified dates.
+Syntax:
+
+DATESBETWEEN(<dates>, <start_date>, <end_date>)
+Example:
+
+Sales Between Dates = CALCULATE(SUM(Sales[SalesAmount]), DATESBETWEEN(Dates[Date], DATE(2023, 1, 1), DATE(2023, 12, 31)))
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FIRSTDATE
+Usage: Returns the first date in the current context for the specified column of dates.
+Syntax:
+
+FIRSTDATE(<dates>)
+Example:
+
+First Date of Context = FIRSTDATE(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LASTDATE
+Usage: Returns the last date in the current context for the specified column of dates.
+Syntax:
+
+LASTDATE(<dates>)
+Example:
+
+Last Date of Context = LASTDATE(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FIRSTNONBLANK
+Usage: Returns the first value in a column for which an expression evaluates to a non-blank value.
+Syntax:
+
+FIRSTNONBLANK(<column>, <expression>)
+Example:
+
+First Non Blank Sale Date = FIRSTNONBLANK(Dates[Date], SUM(Sales[SalesAmount]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LASTNONBLANK
+Usage: Returns the last value in a column for which an expression evaluates to a non-blank value.
+Syntax:
+
+LASTNONBLANK(<column>, <expression>)
+Example:
+
+Last Non Blank Sale Date = LASTNONBLANK(Dates[Date], SUM(Sales[SalesAmount]))
+Rolling & Moving Averages
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MOVING AVERAGE
+Usage: Calculates a moving average over a specific period (e.g., 7 days, 30 days).
+Custom DAX Calculation:
+
+Moving Average 30 Days = 
+CALCULATE(
+   AVERAGE(Sales[SalesAmount]),
+   DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -30, DAY)
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ROLLING TOTAL (Custom Calculation)
+Usage: Computes a rolling total for a defined period.
+Custom DAX Calculation:
+
+Rolling Total 90 Days = 
+CALCULATE(
+    SUM(Sales[SalesAmount]),
+    DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -90, DAY)
+)
+Advanced Time-Based Calculations
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DATESINPERIOD
+Usage: Returns a table that contains a contiguous range of dates shifted by a specified number of intervals.
+Syntax:
+
+DATESINPERIOD(<dates>, <start_date>, <number_of_intervals>, <interval>)
+Example:
+
+Sales in Last 30 Days = 
+CALCULATE(
+    SUM(Sales[SalesAmount]),
+    DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -30, DAY)
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CUMULATIVE TOTAL (Custom Calculation)
+Usage: Accumulates a total over time (year, quarter, month, etc.).
+Custom DAX Calculation:
+
+Cumulative Total Sales = 
+CALCULATE(
+    SUM(Sales[SalesAmount]),
+    FILTER(ALL(Dates[Date]), Dates[Date] <= MAX(Dates[Date]))
+)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+AVERAGEX
+Usage: Calculates the average of an expression evaluated over a table.
+Syntax:
+
+AVERAGEX(<table>, <expression>)
+Example:
+
+Average Sales per Day = AVERAGEX(Dates, SUM(Sales[SalesAmount]))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CUMULATIVE AVERAGE (Custom Calculation)
+Usage: Calculates a running average over time.
+Custom DAX Calculation:
+
+Cumulative Average Sales = 
+CALCULATE(
+    AVERAGE(Sales[SalesAmount]),
+    FILTER(ALL(Dates[Date]), Dates[Date] <= MAX(Dates[Date]))
+)
+Less Common but Specialized Functions
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LASTN
+Usage: Returns the last N dates in the current context.
+Syntax:
+
+LASTN(<n_value>, <table>)
+Example:
+
+Last 7 Days Sales = CALCULATE(SUM(Sales[SalesAmount]), LASTN(7, Dates[Date]))
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTN
+Usage: Returns the next N dates in the current context.
+Syntax:
+
+NEXTN(<n_value>, <table>)
+Example:
+
+Next 7 Days Forecast = CALCULATE(SUM(SalesForecast[ForecastAmount]), NEXTN(7, Dates[Date]))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+EARLIER
+Usage: Used to refer to an earlier row context during calculations, often combined with time periods.
+Syntax:
+
+EARLIER(<column>)
+Example:
+
+Rank Sales by Date = 
+RANKX(
+    ALL(Sales), 
+    Sales[SalesAmount], 
+    Sales[SalesAmount], 
+    EARLIER(Sales[SalesAmount])
+)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTDAY
+Usage: Returns the next day in the current context.
+Syntax:
+
+NEXTDAY(<dates>)
+Example:
+
+Next Day Sales = CALCULATE(SUM(Sales[SalesAmount]), NEXTDAY(Dates[Date]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTWEEK
+Usage: Returns the dates for the next week in the current context.
+Syntax:
+
+NEXTWEEK(<dates>)
+Example:
+
+Sales Next Week = CALCULATE(SUM(Sales[SalesAmount]), NEXTWEEK(Dates[Date]))
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NEXTMONTH
+Usage: Returns the dates for the next month.
+Syntax:
+
+NEXTMONTH(<dates>)
+Example:
+
+Sales Next Month = CALCULATE(SUM(Sales[SalesAmount]), NEXTMONTH(Dates[Date]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PREVIOUSDAY
+Usage: Returns the previous day in the current context.
+Syntax:
+
+PREVIOUSDAY(<dates>)
+Example:
+
+Previous Day Sales = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSDAY(Dates[Date]))
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PREVIOUSWEEK
+Usage: Returns the dates for the previous week.
+Syntax:
+
+PREVIOUSWEEK(<dates>)
+Example:
+
+Sales Previous Week = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSWEEK(Dates[Date]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PREVIOUSMONTH
+Usage: Returns the dates for the previous month.
+Syntax:
+
+PREVIOUSMONTH(<dates>)
+Example:
+
+Sales Previous Month = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSMONTH(Dates[Date]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FIRSTYEAR
+Usage: Returns the first date of the year in the current context.
+Syntax:
+
+FIRSTYEAR(<dates>)
+Example:
+
+First Year Sales = FIRSTYEAR(Dates[Date])
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LASTYEAR
+Usage: Returns the last date of the year in the current context.
+Syntax:
+
+LASTYEAR(<dates>)
+Example:
+
+Last Year Sales = LASTYEAR(Dates[Date])
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LASTNONBLANKVALUE
+Usage: Returns the last non-blank value in a column for which an expression evaluates to a non-blank result.
+Syntax:
+
+LASTNONBLANKVALUE(<column>, <expression>)
+Example:
+
+Last Non Blank Sales Date = LASTNONBLANKVALUE(Dates[Date], SUM(Sales[SalesAmount]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FIRSTNONBLANKVALUE
+Usage: Returns the first non-blank value in a column for which an expression evaluates to a non-blank result.
+Syntax:
+
+FIRSTNONBLANKVALUE(<column>, <expression>)
+Example:
+
+First Non Blank Sales Date = FIRSTNONBLANKVALUE(Dates[Date], SUM(Sales[SalesAmount]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ALL
+Usage: Removes all filters from a column or table, often used to calculate totals without filter context.
+Syntax:
+
+ALL(<column>)
+Example:
+
+Total Sales Without Filters = CALCULATE(SUM(Sales[SalesAmount]), ALL(Dates[Date]))
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ALLEXCEPT
+Usage: Removes all filters from a table except for specific columns.
+Syntax:
+
+ALLEXCEPT(<table>, <column1>, <column2>, ...)
+Example:
+
+Sales With Filtered Dates = CALCULATE(SUM(Sales[SalesAmount]), ALLEXCEPT(Dates, Dates[Year], Dates[Month]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FILTER
+Usage: Returns a table with the filtered rows based on an expression.
+Syntax:
+
+FILTER(<table>, <expression>)
+Example:
+
+Filtered Sales Last Year = CALCULATE(SUM(Sales[SalesAmount]), FILTER(Dates, Dates[Year] = YEAR(TODAY()) - 1))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CALCULATETABLE
+Usage: Evaluates an expression and returns a table.
+Syntax:
+
+CALCULATETABLE(<expression>, <filters>)
+Example:
+
+Filtered Sales Table = CALCULATETABLE(Sales, Dates[Year] = YEAR(TODAY()))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ROLLING 12-Month Total (Custom Calculation)
+Usage: Calculates a rolling total for the past 12 months.
+Custom DAX Calculation:
+
+Rolling 12 Months Sales = 
+CALCULATE(
+    SUM(Sales[SalesAmount]),
+    DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -12, MONTH)
+)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ROLLING 6-Month Average (Custom Calculation)
+Usage: Calculates a moving average over the last 6 months.
+Custom DAX Calculation:
+
+Rolling 6 Months Average = 
+CALCULATE(
+    AVERAGE(Sales[SalesAmount]),
+    DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -6, MONTH)
+)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ROLLING 30-Day Total (Custom Calculation)
+Usage: A rolling sum over the last 30 days.
+Custom DAX Calculation:
+
+Rolling 30 Days Sales = 
+CALCULATE(
+    SUM(Sales[SalesAmount]),
+    DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -30, DAY)
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CUMULATIVE SUM (with Filter)
+Usage: A custom running total calculation where you can apply filters.
+Custom DAX Calculation:
+
+Cumulative Total Sales (Filtered) = 
+CALCULATE(
+    SUM(Sales[SalesAmount]),
+    FILTER(ALL(Dates), Dates[Date] <= MAX(Dates[Date]) && Dates[Year] = YEAR(TODAY()))
+)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CUMULATIVE COUNT (Custom Calculation)
+Usage: A custom cumulative count over time.
+Custom DAX Calculation:
+
+Cumulative Count of Orders = 
+CALCULATE(
+    COUNT(Sales[OrderID]),
+    FILTER(ALL(Dates), Dates[Date] <= MAX(Dates[Date]))
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+YEAR
+Usage: Extracts the year from a date.
+Syntax:
+
+YEAR(<date>)
+Example:
+
+Year of Sale = YEAR(Sales[SaleDate])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONTH
+Usage: Extracts the month from a date.
+Syntax:
+
+MONTH(<date>)
+Example:
+
+Month of Sale = MONTH(Sales[SaleDate])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DAY
+Usage: Extracts the day from a date.
+Syntax:
+
+DAY(<date>)
+Example:
+
+Day of Sale = DAY(Sales[SaleDate])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FORMAT
+Usage: Formats dates or numbers into a readable string.
+Syntax:
+
+FORMAT(<value>, <format_string>)
+Example:
+
+Formatted Date = FORMAT(Sales[SaleDate], "MMMM YYYY")
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EDATE
+Usage: Returns the date that is the indicated number of months before or after a given date.
+Syntax:
+
+EDATE(<start_date>, <months>)
+Example:
+
+Date 3 Months Later = EDATE(TODAY(), 3)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EOMONTH
+Usage: Returns the last day of the month, a specified number of months before or after the start date.
+Syntax:
+
+EOMONTH(<start_date>, <months>)
+Example:
+
+End of Current Month = EOMONTH(TODAY(), 0)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+STARTOFMONTH
+Usage: Returns the first date of the month in the current context for the specified column of dates.
+Syntax:
+
+STARTOFMONTH(<dates>)
+Example:
+
+First Date of Month = STARTOFMONTH(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+STARTOFQUARTER
+Usage: Returns the first date of the quarter in the current context for the specified column of dates.
+Syntax:
+
+STARTOFQUARTER(<dates>)
+Example:
+
+First Date of Quarter = STARTOFQUARTER(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+STARTOFYEAR
+Usage: Returns the first date of the year in the current context for the specified column of dates.
+Syntax:
+
+STARTOFYEAR(<dates>)
+Example:
+
+First Date of Year = STARTOFYEAR(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ENDOFMONTH
+Usage: Returns the last date of the month in the current context for the specified column of dates.
+Syntax:
+
+ENDOFMONTH(<dates>)
+Example:
+
+Last Date of Month = ENDOFMONTH(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ENDOFQUARTER
+Usage: Returns the last date of the quarter in the current context for the specified column of dates.
+Syntax:
+
+ENDOFQUARTER(<dates>)
+Example:
+
+Last Date of Quarter = ENDOFQUARTER(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ENDOFYEAR
+Usage: Returns the last date of the year in the current context for the specified column of dates.
+Syntax:
+
+ENDOFYEAR(<dates>)
+Example:
+
+Last Date of Year = ENDOFYEAR(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+PARALLELPERIOD
+Usage: Returns a table that contains a column of dates shifted by a specified number of intervals (e.g., days, months, quarters, or years).
+Syntax:
+
+PARALLELPERIOD(<dates>, <number_of_intervals>, <interval>)
+Example:
+
+Sales Last Quarter = 
+CALCULATE(
+    SUM(Sales[SalesAmount]), 
+    PARALLELPERIOD(Dates[Date], -1, QUARTER)
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LASTDATEWITHIN
+Usage: Returns the latest date within a specific time range.
+Custom DAX Calculation:
+
+Last Date Within 6 Months = 
+CALCULATE(
+    LASTDATE(Dates[Date]), 
+    DATESINPERIOD(Dates[Date], TODAY(), -6, MONTH)
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FIRSTDATEWITHIN
+Usage: Returns the earliest date within a specific time range.
+Custom DAX Calculation:
+
+First Date Within 3 Months = 
+CALCULATE(
+    FIRSTDATE(Dates[Date]), 
+    DATESINPERIOD(Dates[Date], TODAY(), -3, MONTH)
+)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DATESINPERIOD for Fiscal Quarters
+Usage: Returns the dates in a custom period for fiscal quarters.
+Custom DAX Calculation:
+
+Fiscal Quarter Dates = 
+DATESINPERIOD(Dates[Date], TODAY(), -1, QUARTER)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUOTIENT
+Usage: Returns the integer portion of a division. Often useful when calculating year or quarter breakdowns.
+Syntax:
+
+QUOTIENT(<numerator>, <denominator>)
+Example:
+
+Quarter of Year = QUOTIENT(MONTH(Sales[SaleDate]) - 1, 3) + 1
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ISBLANK
+Usage: Returns TRUE if the value is blank.
+Synta
+ISBLANK(<value>)
+Example:
+
+Check Blank Sales = IF(ISBLANK(SUM(Sales[SalesAmount])), 0, SUM(Sales[SalesAmount]))
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+BLANK
+Usage: Returns a blank value. Can be used in conjunction with time periods when no data is available.
+Syntax:
+
+BLANK()
+Example:
+
+Handle Missing Data = IF(SUM(Sales[SalesAmount]) = 0, BLANK(), SUM(Sales[SalesAmount]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEAD Function (Custom Calculation)
+Usage: Custom DAX calculation to simulate a SQL-like LEAD function for comparing a value to the next row’s value.
+Custom DAX Calculation:
+
+Lead Sales = 
+CALCULATE(
+    SUM(Sales[SalesAmount]), 
+    DATESINPERIOD(Dates[Date], NEXTDAY(Dates[Date]), 1, DAY)
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LAG Function (Custom Calculation)
+Usage: Custom DAX calculation to simulate a SQL-like LAG function for comparing a value to the previous row’s value.
+Custom DAX Calculation:
+
+Lag Sales = 
+CALCULATE(
+    SUM(Sales[SalesAmount]), 
+    DATESINPERIOD(Dates[Date], PREVIOUSDAY(Dates[Date]), -1, DAY)
+)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUARTER
+Usage: Returns the quarter for a given date as an integer (1 through 4).
+Syntax:
+
+QUARTER(<date>)
+Example:
+
+Quarter of Sale = QUARTER(Sales[SaleDate])
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ISOYEAR
+Usage: Returns the ISO year number for the specified date (for ISO 8601 calendar systems).
+Syntax:
+
+ISOYEAR(<date>)
+Example:
+
+ISO Year = ISOYEAR(Dates[Date])
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WEEKNUM
+Usage: Returns the week number for the given date.
+Syntax:
+
+WEEKNUM(<date>)
+Example:
+
+Week of Year = WEEKNUM(Sales[SaleDate])
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DATEDIFF
+Usage: Returns the difference between two dates in units specified by the user (e.g., days, months, quarters, years).
+Syntax:
+
+DATEDIFF(<start_date>, <end_date>, <interval>)
+Example:
+
+Days Between Sales = DATEDIFF(Sales[StartDate], Sales[EndDate], DAY)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+YEARFRAC (Custom Calculation)
+Usage: Custom DAX calculation to find the fraction of a year between two dates.
+Custom DAX Calculation:
+
+Year Fraction = 
+DATEDIFF(Sales[StartDate], Sales[EndDate], DAY) / 365
+Complex Rolling and Cumulative Calculations
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ROLLING 12-Month Growth (Custom Calculation)
+Usage: A custom DAX formula to calculate year-over-year growth for a rolling 12-month period.
+Custom DAX Calculation:
+
+Rolling 12-Month Growth = 
+DIVIDE(
+    SUM(Sales[SalesAmount]) - 
+    CALCULATE(SUM(Sales[SalesAmount]), DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -12, MONTH)),
+    CALCULATE(SUM(Sales[SalesAmount]), DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -12, MONTH))
+)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MOVING AVERAGE with DATESBETWEEN
+Usage: A flexible moving average using a custom date range.
+Custom DAX Calculation:
+
+Moving Average Sales = 
+CALCULATE(
+    AVERAGE(Sales[SalesAmount]), 
+    DATESBETWEEN(Dates[Date], TODAY() - 30, TODAY())
+)
