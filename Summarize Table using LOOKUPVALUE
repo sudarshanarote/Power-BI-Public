@@ -1,0 +1,21 @@
+New Target Table = 
+SUMMARIZE(
+    Orders,
+    Orders[Region],
+    Orders[Country],
+    Orders[State],
+    Orders[Year],
+    Orders[Month],
+    'Date Table'[Month Short],
+    
+    "Target Sales", 
+    LOOKUPVALUE(
+        'Sales Target'[Target], 
+        'Sales Target'[State], Orders[State], 
+        'Sales Target'[Year], Orders[Year], 
+        'Sales Target'[Month], Orders[Month]
+    ),
+
+    "First Date of Month",
+    DATE(Orders[Year], Orders[Month], 1)  // First date of month.(On this date we are getting target for the Month/ Target start date)
+)
