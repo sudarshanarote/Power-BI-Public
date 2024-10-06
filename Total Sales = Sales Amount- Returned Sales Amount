@@ -1,0 +1,8 @@
+Total_Sales = 
+VAR  Sales_Amount = CALCULATE(SUM(Orders[Sales Amount]))
+
+VAR Returned_Sales_Amount = CALCULATE(SUM(Orders[Sales Amount]), 
+Orders[Order ID] IN VALUES(Returns[Order ID]))
+
+RETURN
+ Sales_Amount - Returned_Sales_Amount
