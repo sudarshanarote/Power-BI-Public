@@ -15,7 +15,6 @@ Suppose you have a table Sales with columns Quantity and PricePerUnit. You want 
 the total sales amount by multiplying Quantity and PricePerUnitfor each row and then summing the results.
 
 dax
-Copy code
 TotalSalesAmount = 
 SUMX(
     Sales,
@@ -31,7 +30,6 @@ Suppose you have two tables: Sales and Products. Sales has columns ProductID, Qu
 while Products has columns ProductID and Discount.You want to calculate the total sales amount after applying the discount.
 
 dax
-Copy code
 TotalSalesAfterDiscount = 
 SUMX(
     Sales,
