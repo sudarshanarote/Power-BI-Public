@@ -28,7 +28,7 @@ CALCULATE(
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-DAX	measure	for	a rolling 31-day sales total that will return the total	sales amount for a
+DAX	measure for a rolling 31-day sales total that will return the total	sales amount for a
 selected date and the previous 30 days.
 
 CALCULATE(SUM(Sales[SalesAmount]), DATEADD(Date[Date], -30,	DAY))
