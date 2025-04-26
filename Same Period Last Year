@@ -1,0 +1,3 @@
+CALCULATE(CALCULATE([Sales],SAMEPERIODLASTYEAR('Date'[Date])),FILTER('Date','Date'[Date]< TODAY()))
+
+This will show the of last year in parallel to current year period
