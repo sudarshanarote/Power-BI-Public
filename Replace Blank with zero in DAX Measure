@@ -1,0 +1,5 @@
+Measure = 
+var Total_Pending_Count =CALCULATE([Total Count],'Table_Name'[Status]="Pending")
+var blank_replace_with_zero = IF(ISBLANK(Total_Pending_Count),0,Total_Pending_Count)
+return
+blank_replace_with_zero
