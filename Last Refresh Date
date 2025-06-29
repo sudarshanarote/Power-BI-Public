@@ -1,0 +1,1 @@
+Last Refresh Date = CONCATENATE("Last Refresh Date : ",FORMAT(MAX('Table_Name'[ETL_Load_Date_Column_Name]),"dd-mm-yyyy"))
