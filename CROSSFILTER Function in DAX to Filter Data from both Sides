@@ -1,0 +1,1 @@
+Dept = CALCULATE(MAX(Fact_Table_Name[ Department]),CROSSFILTER(Dim_Table[Sr_Number],Fact_Table_Name[Sr_No],Both))
