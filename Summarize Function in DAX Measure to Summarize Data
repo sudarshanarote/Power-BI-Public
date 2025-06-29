@@ -4,3 +4,12 @@ var sumrize = SUMMARIZE(TableName,TableName[Order Number],"Expiry alert",
 SWITCH(TRUE(),expirytat<0,"Expired",expirytat>=0 && expirytat<450,"<15 Months",">15 Months"))
 return
 COUNTX(sumrize,[Expiry alert])
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+award amount = 
+var sumr = SUMMARIZE(Table_Name,Table_Name[Award Amount],Table_Name[RFP Number],Table_Name[Supplier Bid Number],"sumrs",SUM(Table_Name[Award Amount]))
+
+return
+SUMX(sumr,[sumrs])
