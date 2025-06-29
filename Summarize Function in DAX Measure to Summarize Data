@@ -1,0 +1,6 @@
+A_EXP Count = 
+var expirytat = MAXX(TableName,DATEDIFF(TODAY(),Table_Name[End Date],DAY))
+var sumrize = SUMMARIZE(TableName,TableName[Order Number],"Expiry alert",
+SWITCH(TRUE(),expirytat<0,"Expired",expirytat>=0 && expirytat<450,"<15 Months",">15 Months"))
+return
+COUNTX(sumrize,[Expiry alert])
