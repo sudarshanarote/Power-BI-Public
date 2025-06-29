@@ -1,0 +1,1 @@
+Color Code = SWITCH(TRUE(),[Expiry Alert]=0,"#FFBF00",[Expiry Alert]>=0&&[Expiry Alert]<=30,"#FFBF00"," ")
