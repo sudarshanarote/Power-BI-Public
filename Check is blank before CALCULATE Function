@@ -1,0 +1,6 @@
+YTD_Sales = IF(ISBLANK(max(Table_Name[month_date]))=FALSE(),
+CALCULATE(sum(Table_Name[Sales]),DATESYTD(DimDate[Date],"3/31"),
+ALLEXCEPT(Table_Name,Table_Name[Employee_code],Table_Name[month_date])))
+ 
+This will check if any value in month_date column is blank then it will return blank, if not blank then it will execute calculate block.
+and DATESYTD Calculates for FY "3/31"
