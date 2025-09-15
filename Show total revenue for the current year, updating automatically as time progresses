@@ -1,0 +1,16 @@
+To Show total revenue for the current year, updating automatically as time progresses.
+
+Steps I followed:
+1. Loaded the sales data into Power BI
+2. Created a DAX measure:
+YTD Revenue = CALCULATE(
+    SUM(Sales[Revenue]), 
+    YEAR(Sales[Date]) = YEAR(TODAY())
+)
+
+(Or use built-in TOTALYTD() if a date table is set up)  
+3. Added a KPI or card visual to display the revenue  
+4. Set up a date table & marked it as Date Table for accurate time intelligence  
+5. Formatted currency and added data labels for clarity
+
+Result: A live Year-to-Date revenue figure — fully automated, no manual updates needed 
