@@ -1,0 +1,16 @@
+User-Defined Function (UDF):- In DAX, a UDF (User-Defined Function) can be created using the DEFINE FUNCTION syntax.
+
+Syntax:-
+DEFINE
+    FUNCTION FunctionName = (param1, param2, ...) => expression
+EVALUATE
+    { FunctionName(arg1, arg2, ...) }
+
+
+Example:-
+DEFINE
+    FUNCTION Multiplication = (A, B) => A * B
+
+EVALUATE
+    { Multiplication(100, 20) }
+
