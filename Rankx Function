@@ -1,0 +1,20 @@
+RANKX ranks each row based on a specific measure or expression you define.
+
+Syntax:- 
+RANKX(table, expression, [value], [order], [ties])
+
+Example:-
+CustomerRank = RANKX(
+    ALL(Customers),
+    CALCULATE(SUM(Sales[Amount])),
+    ,
+    DESC,
+    SKIP
+)
+
+
+What this does:
+ALL(Customers) removes any filters so the ranking is across all customers.
+CALCULATE(SUM(Sales[Amount])) computes total sales per customer.
+DESC ranks from highest to lowest.
+SKIP means if two customers tie, the next rank is skipped (e.g., 1, 2, 2, 4).
