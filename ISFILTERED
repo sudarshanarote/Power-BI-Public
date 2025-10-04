@@ -1,0 +1,20 @@
+ISFILTERED:- The ISFILTERED function in Power BI (DAX) is used to check whethera column is being filtered directly in the current context.
+It's especially useful when building dynamic measures or conditional logic in visuals.
+
+Example:-
+You're tracking monthly sales performance. If the user filters by a specific Month, you want to show actual sales.
+But if no month is selected, you want to show the average monthly sales instead.
+
+SalesKPI = 
+IF(
+    ISFILTERED(Sales[Month]),
+    SUM(Sales[Amount]),
+    AVERAGEX(
+        VALUES(Sales[Month]),
+        CALCULATE(SUM(Sales[Amount]))
+    )
+)
+
+What This Does:
+If the user selects one or more months → shows total sales for those months.
+If no month is selected → calculates average monthly sales across all months.
